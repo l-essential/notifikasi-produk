@@ -1,0 +1,19 @@
+id_produk,kode_bahan,no_standar_bahan,nama_bahan,persen,kode_mesin,nama_mesin,jam_mesin,jam_orang
+,RLQRUN01,no-standar,Runmild COP,20.0000,F3.HP.002,Medium Mixer 1,105,115
+,RLQCR04,no-standar,SP Crodasinic LS30MIT-MBAL-LQ-(RB),10.0000,F3.HP.002,Hot Plate,25,25
+,RLQTE02,,Tego Betain L 7,10.0000,,Persiapan,1,30
+,RLQEU03,,Euperlan PK 771 Benz ID,3.0000,,Pencucian,15,15
+,RLQAQ01,,Aquadem,33.7500,,,,
+,RLQAQ01,,Aquadem,5.0000,,,,
+,RLQAC01,,Aculyn 22 Polymer,3.0000,,,,
+,RLQAQ01,,Aquadem,5.0000,,,,
+,RAKDP01,,D - Panthenol,0.4500,,,,
+,RAKAL01,,Allantoin,0.1000,,,,
+,RLQAQ01,,Aquadem,2.0000,,,,
+,RLQNI01,,Nipaguard DMDMH,0.6000,,,,
+,RAKCE02,,Herbaliquid Camomile Special,0.1000,,,,
+,RLQAQ01,,Aquadem,2.0000,,,,
+,RAKPU02,,Purasal S/HQ 60,0.5000,,,,
+,RLQAQ01,,Aquadem,4.0000,,,,
+,RDRCI03,,Citric Acid Monohydrate ex.Golden Sinar Sakti,0.3000,,,,
+,RPFDC01,,Daily Clean R0408482,0.2000,,,,
