@@ -118,7 +118,7 @@
     ?>
     <tr>          
         <td align="center"><?= KonDecRomawi($no++); ?></td>    
-        <td align="left"><?= $p['prosedur']; ?></td>
+        <td align="left"><?= html_entity_decode($p['prosedur']); ?></td>
         <td align="center">
             <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editprosedur/'); ?><?= $p['idprosedur']; ?>/<?= $merekbyid[0]['idmerek']; ?>" title="Edit Data">
             <i class="ace-icon fa fa-pencil bigger-120"></i></a>

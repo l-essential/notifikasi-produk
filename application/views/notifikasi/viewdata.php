@@ -206,7 +206,7 @@
 						} 
 					?>
 					</td>  
-					<td align="left"><?= $a['namadagang']; ?></td>
+					<td align="left"><?= html_entity_decode($a['namadagang']); ?></td>
 					<td align="left"><?= $a['inciname']; ?></td>
 					<td align="left"><?= $a['fungsi']; ?></td>
 					<td align="left"><?= $a['nocas']; ?></td>
@@ -330,7 +330,7 @@
 				?>
 				<tr>          
 					<td align="center"><?= KonDecRomawi($no++); ?></td>    
-					<td ><?= $a['prosedur']; ?></td>
+					<td ><?= html_entity_decode($a['prosedur']); ?></td>
 				</tr>  
 				<?php 
 					} 

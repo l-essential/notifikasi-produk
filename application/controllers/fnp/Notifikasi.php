@@ -427,7 +427,7 @@ class Notifikasi extends CI_Controller {
 						// Data yang akan disimpan ke dalam databse
 						$data = [
 							'idmerek'     => $idmerek,
-							'prosedur'    => $row[1],
+							'prosedur'    => iconv('', 'UTF-8', $row[1]),
 							'createdate'  => date('Y-m-d H:i:s'),
 							'updatedate'  => date('Y-m-d H:i:s')
 						];
