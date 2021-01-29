@@ -31,7 +31,7 @@
 <thead>
     <tr>
         <th class="center">No.</th>
-        <th class="center">Status Approval <br> Manager RnD</th>
+        <th class="center">Status Approval <br> RnDC Manager</th>
         <th class="center">Status Approval <br> RA</th>
         <th class="center">Merek</th>
         <!-- <th class="center">Nama Produk</th> -->
@@ -81,10 +81,10 @@
         <td align="center"><?= date('d F Y', strtotime($m['tglberlaku'])); ?></td>
         
         <td align="center">
+            <?php if($group == 4){?>
             <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editmerek/'); ?><?= $m['idmerek']; ?>" title="Edit Merek">
             <i class="ace-icon fa fa-pencil bigger-120"></i></a>
-
-            <?php if($group != 3){?>
+            
             <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/addbk/'); ?><?= $m['idmerek']; ?>" title="Tambah Bentuk Kemasan">
             <i class="ace-icon fa fa-pencil bigger-120"></i></a>
 
@@ -96,14 +96,28 @@
 
             <a class="btn btn-minier btn-danger show-option" href="<?= base_url('fnp/notifikasi/hapusalldata/'); ?><?= $m['idmerek']; ?>" title="Hapus Data" onclick="return confirm('Apakah kamu yakin akan menghapus data <?= $m['namamerek']; ?>?');">
             <i class="ace-icon fa fa-trash bigger-120"></i></a>
-            <?php } ?>
-
+            
             <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
             <i class="ace-icon fa fa-eye bigger-120"></i></a>
-            
+
             <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>" title="Print Data">
             <i class="ace-icon fa fa-print bigger-120"></i></a>
-        </td>        
+            <?php }else if($group == 3){?>
+                <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editmerek/'); ?><?= $m['idmerek']; ?>" title="Edit Merek">
+                <i class="ace-icon fa fa-pencil bigger-120"></i></a>
+
+                <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
+                <i class="ace-icon fa fa-eye bigger-120"></i></a>
+
+                <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>" title="Print Data">
+                <i class="ace-icon fa fa-print bigger-120"></i></a>
+            <?php }else{ ?>
+                <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
+                <i class="ace-icon fa fa-eye bigger-120"></i></a>
+            <?php } ?>
+
+        </td>     
+   
     </tr>  
     <?php } ?>
     </tbody>

@@ -40,7 +40,7 @@ $foto           = $this->userlogin_model->karyawan_detail($NIK);
     <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
       <li class="dropdown-header">
         <i class="ace-icon fa fa-exclamation-triangle"></i>
-        <?php if($id_group == 2){ echo count($status_rnd); }else{ echo count($status_ra); }?> Perlu disetujui
+        <?php if($id_group == 2){ echo count($status_rnd); }else{ echo count($status_ra); }?> Data Perlu disetujui
       </li>
 
       <li class="dropdown-content">
@@ -49,7 +49,7 @@ $foto           = $this->userlogin_model->karyawan_detail($NIK);
           <?php foreach($status_rnd as $m){?>
           <li>
             <a href="<?= base_url('fnp/notifikasi'); ?>" class="clearfix">
-              <p><?= $m['namamerek']; ?></p>
+              <h6 style="text-transform:uppercase"><b><?= $m['namamerek']; ?></b> <br> <span style="font-size: 10px"><?= $m['namaproduk']; ?></span></h6>
             </a>
           </li>
           <?php } ?>
@@ -57,7 +57,7 @@ $foto           = $this->userlogin_model->karyawan_detail($NIK);
           <?php foreach($status_ra as $m){?>
           <li>
             <a href="<?= base_url('fnp/notifikasi'); ?>" class="clearfix">
-              <p><?= $m['namamerek']; ?></p>
+              <h6 style="text-transform:uppercase"><b><?= $m['namamerek']; ?></b><br> <span style="font-size: 10px"><?= $m['namaproduk']; ?></span></h6>
             </a>
           </li>
           <?php } ?>

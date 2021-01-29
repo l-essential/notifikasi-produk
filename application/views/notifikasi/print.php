@@ -71,31 +71,40 @@
             <td><b>Formula Khusus</b></td>
             <td><b>: <?= $merek['formulakhusus']; ?></b></td>
         </tr>
-        <tr>
+
+        <?php $no=1; foreach($bk as $b){?>
+        <tr>     
+            
             <td>
-               <b>Bentuk Kemasan</b><br>
-               <b>1. Kemasan Primer</b><br>
-               <b>2. Kemasan Sekunder</b>
+                <b>Bentuk Kemasan <?= $no++;?></b><br>
+                <b>1. Kemasan Primer</b><br>
+                <b>2. Kemasan Sekunder</b><br>
+                
             </td>
-            <td> <br>
-            <b>: <?= $merek['primer']; ?></b><br>
-            <b>: <?= $merek['sekunder']; ?></b>
+            
+            <td><br>
+                <b>: <?= $b['primer']; ?></b><br>
+                <b>: <?= $b['sekunder']; ?></b><br>
             </td>
-            <td rowspan="2"><b>Persamaan Produk</b></td>
-            <td rowspan="2"><b>: <?= $merek['persamaanproduk']; ?></b></td>
-        </tr>
-        <tr>
+            
             <td><b>Ukuran Kemasan</b></td>
-            <td><b>: <?= $merek['ukurankemasan']; ?> gram</b></td>
+            <td><b>: <?= $b['ukurankemasan']; ?> <?= $b['satuan']; ?></b></td>
+        </tr>
+        <?php } ?>
+        
+        
+        <tr>
+            <td><b>Persamaan Produk</b></td>
+            <td colspan="3"><b>: <?= $merek['persamaanproduk']; ?></b></td>
         </tr>
         <tr>
-            <td><b>Kategori*</b></td>
+            <td><b>Kategori</b></td>
             <td colspan="3"><b>: <?= $merek['kategori']; ?></b></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td><b>Sub Kategori*</b></td>
             <td colspan="3"><b>: <?= $merek['subkategori']; ?></b></td>
-        </tr>
+        </tr> -->
         <tr>
             <td style="background-color: grey;" colspan="4"></td>
         </tr>
@@ -275,16 +284,22 @@
         </tr>
         <tr>
             <td>
-                <b>6. Catatan</b><br>
+                <b>6. Catatan RnD Cosmetic (RnDC)</b><br>
                 <?= $merek['catatan']; ?>
             </td>
         </tr>
         <tr>
             <td>
+                <b>6. Catatan Regulatory Affairs (RA)</b><br>
+                <?= $merek['catatanra']; ?>
+            </td>
+        </tr>
+        <!-- <tr>
+            <td>
                 <b>Keterangan : </b><br>
                 (*) : Diisi manual oleh Tim Regulatory Affairs.
             </td>
-        </tr>
+        </tr> -->
     </table>
 
     <table style="font-size: 25px;">

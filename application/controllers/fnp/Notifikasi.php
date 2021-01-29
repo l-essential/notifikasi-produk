@@ -65,7 +65,7 @@ class Notifikasi extends CI_Controller {
 		$this->form_validation->set_rules('namaproduk', 'Nama Produk', 'required');
 		$this->form_validation->set_rules('bentuksediaan', 'Bentuk Sediaan', 'required');
 		$this->form_validation->set_rules('warnasediaan', 'Warna Sediaan', 'required');
-		$this->form_validation->set_rules('ukurankemasan', 'Ukuran Kemasan', 'required');
+		// $this->form_validation->set_rules('ukurankemasan', 'Ukuran Kemasan', 'required');
 		$this->form_validation->set_rules('noformula', 'No. Formula', 'required');
 		$this->form_validation->set_rules('norevisi', 'No. Revisi', 'required');
 		$this->form_validation->set_rules('tglberlaku', 'Tanggal Berlaku', 'required');
@@ -140,7 +140,7 @@ class Notifikasi extends CI_Controller {
 		$this->form_validation->set_rules('namaproduk', 'Nama Produk', 'required');
 		$this->form_validation->set_rules('bentuksediaan', 'Bentuk Sediaan', 'required');
 		$this->form_validation->set_rules('warnasediaan', 'Warna Sediaan', 'required');
-		$this->form_validation->set_rules('ukurankemasan', 'Ukuran Kemasan', 'required');
+		// $this->form_validation->set_rules('ukurankemasan', 'Ukuran Kemasan', 'required');
 		$this->form_validation->set_rules('noformula', 'No. Formula', 'required');
 		$this->form_validation->set_rules('norevisi', 'No. Revisi', 'required');
 		$this->form_validation->set_rules('tglberlaku', 'Tanggal Berlaku', 'required');
@@ -189,9 +189,9 @@ class Notifikasi extends CI_Controller {
 				'namaproduk'      => $this->input->post('namaproduk'),
 				'bentuksediaan'   => $this->input->post('bentuksediaan'),
 				'warnasediaan'    => $this->input->post('warnasediaan'),
-				'primer'          => $this->input->post('primer'),
-				'sekunder'        => $this->input->post('sekunder'),
-				'ukurankemasan'   => $this->input->post('ukurankemasan'),
+				// 'primer'          => $this->input->post('primer'),
+				// 'sekunder'        => $this->input->post('sekunder'),
+				// 'ukurankemasan'   => $this->input->post('ukurankemasan'),
 				'noformula'       => $this->input->post('noformula'),
 				'norevisi'        => $this->input->post('norevisi'),
 				'tglberlaku'      => $this->input->post('tglberlaku'),
@@ -305,7 +305,7 @@ class Notifikasi extends CI_Controller {
 						// Data yang akan disimpan ke dalam database
 						$data = [
 							'idmerek'       => $idmerek,
-							'namadagang' 	=> $row[1],
+							'namadagang' 	=> 	iconv('', 'UTF-8', $row[1]),
 							'inciname' 		=> $row[2],
 							'fungsi' 		=> $row[3],
 							'nocas'			=> $row[4],
@@ -489,6 +489,7 @@ class Notifikasi extends CI_Controller {
 			'merek'      => $this->M_notifikasi->getmerekbyid($idmerek)->row_array(),
 			'komposisi'  => $this->M_notifikasi->getkomposisi($idmerek)->result_array(),
 			'prosedur'   => $this->M_notifikasi->getprosedur($idmerek)->result_array(),
+			'bk'         => $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array(),
 			'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
 			'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
 		];

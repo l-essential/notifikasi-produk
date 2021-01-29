@@ -142,7 +142,7 @@
 							<span class="input-group-addon">
 								Primer
 							</span>
-							<input type="text" class="form-control" name="primer" id="kg" value="" disabled>
+							<input type="text" class="form-control" name="primer" id="kg" value="<?= $b['primer']; ?>" disabled>
 						</div>
 					</div>
 					<div class="form-group">
@@ -151,16 +151,16 @@
 							<span class="input-group-addon">
 								Sekunder
 							</span>
-							<input type="text" class="form-control" name="sekunder" id="kg" value="" disabled>
+							<input type="text" class="form-control" name="sekunder" id="kg" value="<?= $b['sekunder']; ?>" disabled>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-padding-right">Ukuran Kemasan<span id="merah">*</span></label>
 						<div class="col-sm-8 input-group">
-							<input type="number" class="form-control" name='ukurankemasan' value="" disabled>
+							<input type="number" class="form-control" name='ukurankemasan' value="<?= $b['ukurankemasan']; ?>" disabled>
 							
 							<span class="input-group-addon">
-								gram
+								<?= $b['satuan']; ?>
 							</span>
 							
 						</div>
