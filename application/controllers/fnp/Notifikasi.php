@@ -306,7 +306,7 @@ class Notifikasi extends CI_Controller {
 						$data = [
 							'idmerek'       => $idmerek,
 							'namadagang' 	=> 	iconv('', 'UTF-8', $row[1]),
-							'inciname' 		=> $row[2],
+							'inciname' 		=> iconv('', 'UTF-8', $row[2]),
 							'fungsi' 		=> $row[3],
 							'nocas'			=> $row[4],
 							'konsentrasi'	=> $row[5],

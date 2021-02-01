@@ -3,15 +3,19 @@
     $file = 'FNP-' . $merek['namamerek'] . '.pdf';
     //$mpdf = new Mpdf('utf-8', 'A4', 10.5, 'Arial');
     $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => 'A4', 'default_font' => 'Arial']);
+    
     ob_start();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-4" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
     <title><?= $merek['namamerek']; ?></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <style>
         table, td{
@@ -139,7 +143,7 @@
                     } 
                 ?>
             </td>
-            <td style="width:150%; text-align: left;"><?= $k['namadagang']; ?></td>
+            <td style="width:150%; text-align: left;"><?= iconv("UTF-8", "ISO-8859-1//TRANSLIT", $k['namadagang']); ?></td>
             <td style="text-align: left;"><?= $k['inciname']; ?></td>
             <td style="text-align: left;"><?= $k['fungsi']; ?></td>
             <td style="text-align: center;"><?= $k['nocas']; ?></td>
@@ -327,6 +331,7 @@
 
 <?php
     $html = ob_get_contents();
+    
     header('Content-type: application/pdf');
     header('Content-Disposition: inline; filename="' .$file. '"');
     header('Content-Transfer-Encoding: binary');
@@ -336,7 +341,7 @@
     flush();
 
     @readfile($file);
-
+    
     $mpdf->WriteHTML(utf8_encode($html));
     $mpdf->Output($file);
     // $mpdf->Output($nama_dokumen.".pdf" ,'D');

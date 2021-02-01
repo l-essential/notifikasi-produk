@@ -51,7 +51,7 @@
             } 
           ?>
         </td>
-        <td align="left"><?= html_entity_decode($k['namadagang']); ?></td>
+        <td align="left"><?= $k['namadagang']; ?></td>
         <td align="left"><?= $k['inciname']; ?></i></td>
         <td align="left"><?= $k['fungsi']; ?></td>
         <td align="left"><?= $k['nocas']; ?></td>
