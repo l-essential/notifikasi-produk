@@ -63,7 +63,7 @@
         
         <td align="center">
         <?php if($m['status_approve_ra'] == 0 && $group == 3){?>
-            <a href="<?= base_url('fnp/notifikasi/approve_ra/');?><?= $m['idmerek']; ?>" onclick="return confirm('Apakah Yakin Setujui Data <?= $m['namamerek'];?>')" class="btn btn-xs btn-danger">
+            <a href="<?= base_url('fnp/notifikasi/approve_ra/');?><?= $m['idmerek']; ?>" onclick="return confirm('Apakah Anda Yakin Setujui Data <?= $m['namamerek'];?>')" class="btn btn-xs btn-danger">
             <i class="fa fa-pencil" aria-hidden="true"></i> Approve
             </a>
         <?php }else if($m['status_approve_ra'] == 1){ ?>
