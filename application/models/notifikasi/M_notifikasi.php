@@ -49,6 +49,23 @@ class M_notifikasi extends CI_Model{
 		return $query;
 	}
 
+	public function getbkbyidbk($idmerek, $idbk){
+		$this->db->where('idmerek', $idmerek);
+		$this->db->where('idbk', $idbk);
+		return $this->db->get('tbl_bentukkemasan');
+	}
+
+	public function editbk($idmerek, $idbk, $data, $table){
+		$this->db->where('idmerek', $idmerek);
+		$this->db->where('idbk', $idbk);
+		$this->db->update($table, $data);
+	}
+
+	public function hapusbk($idmerek, $idbk){
+		$this->db->where('idmerek', $idmerek);
+		$this->db->where('idbk', $idbk);
+		$this->db->delete('tbl_bentukkemasan');
+	}
 	
 	// ============================================================================== KOMPOSISI
 	public function getkomposisi($idmerek){

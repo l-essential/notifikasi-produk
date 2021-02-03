@@ -274,7 +274,7 @@ class Notifikasi extends CI_Controller {
 					  'bk'         => $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
 					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
-					  'databk'       => $this->M_notifikasi->getdata('tbl_masterbk')->result_array()
+					  'databk'     => $this->M_notifikasi->getdata('tbl_masterbk')->result_array()
 					);
 		$this->load->view('layout/wrapper',$data);
 		}else{
@@ -290,6 +290,42 @@ class Notifikasi extends CI_Controller {
 			$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Bentuk Kemasan Berhasil Ditambahkan<strong class="green"></strong></div>');
 			redirect(base_url('fnp/notifikasi/addbk/') . $idmerek);
 		}
+	}
+
+	public function editbk($idmerek, $idbk){
+		$this->form_validation->set_rules('ukurankemasan', 'ukuran kemasan', 'required');
+
+        if($this->form_validation->run() == false)
+        {
+		$data = array('sub_judul'  => 'Notifikasi',
+					  'sub_judul1' => 'Edit Bentuk Kemasan',
+					  'isi'  	   => 'notifikasi/editbk',
+					  'merekbyid'  => $this->M_notifikasi->getmerekbyid($idmerek)->result_array(),
+					  'edit'       => $this->M_notifikasi->getbkbyidbk($idmerek, $idbk)->result_array(),
+					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'databk'     => $this->M_notifikasi->getdata('tbl_masterbk')->result_array()
+					);
+		$this->load->view('layout/wrapper',$data);
+		}else{
+			$data = array(
+				// 'idmerek'       => $idmerek,
+				'primer'        => $this->input->post('primer'),
+				'sekunder'      => $this->input->post('sekunder'),
+				'ukurankemasan' => $this->input->post('ukurankemasan'),
+				'satuan'        => $this->input->post('satuan'),
+			);
+	
+			$this->M_notifikasi->editbk($idmerek, $idbk, $data,'tbl_bentukkemasan');
+			$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Bentuk Kemasan Berhasil Diperbaharui<strong class="green"></strong></div>');
+			redirect(base_url('fnp/notifikasi/editbk/') . $idmerek);
+		}
+	}
+	
+	public function hapusbk($idmerek, $idbk){
+		$this->M_notifikasi->hapusbk($idmerek, $idbk);
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Bentuk Kemasan Berhasil Dihapus<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/addbk/') . $idmerek);
 	}
 
 	// ========================================================================================== KOMPOSISI

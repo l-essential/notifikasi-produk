@@ -42,10 +42,10 @@
         <td align="left"><?= $b['sekunder']; ?></td>
         <td align="left"><?= $b['ukurankemasan']; ?> <?= $b['satuan']; ?></td>
         <td align="center">
-            <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editbk/'); ?><?= $b['idbk']; ?>/<?= $merekbyid[0]['idmerek']; ?>" title="Edit Data">
+            <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editbk/'); ?><?= $merekbyid[0]['idmerek']; ?>/<?= $b['idbk']; ?>" title="Edit Data">
             <i class="ace-icon fa fa-pencil bigger-120"></i></a>
 
-            <a class="btn btn-minier btn-danger show-option" href="<?= base_url('fnp/notifikasi/hapusbk/'); ?>/<?= $merekbyid[0]['idmerek']; ?>" title="Hapus Data" onclick="return confirm('Apakah kamu yakin akan menghapus data ini?');">
+            <a class="btn btn-minier btn-danger show-option" href="<?= base_url('fnp/notifikasi/hapusbk/'); ?><?= $merekbyid[0]['idmerek']; ?>/<?= $b['idbk']; ?>" title="Hapus Data" onclick="return confirm('Apakah kamu yakin akan menghapus data ini?');">
             <i class="ace-icon fa fa-trash bigger-120"></i></a>
         </td>        
     </tr>  
@@ -111,7 +111,7 @@
             <label class="col-sm-4 control-label no-padding-right"></label>
             <div class="col-sm-8 input-group">
                 <label for="" style="margin-right: 10px"><b>Satuan :</b></label>
-                <input type="radio" name="satuan" id="satuan" value="Miligram" style="margin-right: 5px"> <b style="margin-right: 20px">Miligram</b> 
+                <input type="radio" name="satuan" id="satuan" value="Mililiter" style="margin-right: 5px"> <b style="margin-right: 20px">Mililiter</b> 
 
                 <input type="radio" name="satuan" id="satuan" value="Gram" style="margin-right: 5px"><b>Gram</b>
             </div>
