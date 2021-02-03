@@ -89,49 +89,74 @@ class Notifikasi extends CI_Controller {
 		$this->load->view('layout/wrapper', $data);
 		}else{
 
-			$config['upload_path'] = './assets/doc/';
-			$config['allowed_types'] = 'pdf';
-			$config['max_size']      = '2048';			
-			
-			$this->load->library('upload', $config);
-			// $this->upload->initialize($config);
+			$file = $_FILES['filepdf']['name'];
 
-			if ($this->upload->do_upload('filepdf')) {
-				$data = array(
-					'namamerek'         	=> $this->input->post('namamerek'),
-					'namaproduk'        	=> $this->input->post('namaproduk'),
-					'bentuksediaan'     	=> $this->input->post('bentuksediaan'),
-					'warnasediaan'    		=> $this->input->post('warnasediaan'),
-					// 'primer'          		=> $this->input->post('primer'),
-					// 'sekunder'        		=> $this->input->post('sekunder'),
-					// 'ukurankemasan'   		=> $this->input->post('ukurankemasan'),
-					'noformula'       		=> $this->input->post('noformula'),
-					'norevisi'        		=> $this->input->post('norevisi'),
-					'tglberlaku'      		=> $this->input->post('tglberlaku'),
-					'formulakhusus'   		=> $this->input->post('formulakhusus'),
-					'persamaanproduk' 		=> $this->input->post('persamaanproduk'),
-					// 'kategori'        	=> $this->input->post('kategori'),
-					// 'subkategori'     	=> $this->input->post('subkategori'),
-					'klaimproduk'     		=> $this->input->post('klaimproduk'),
-					'carapakai'       		=> $this->input->post('carapakai'),
-					'perhatian'       		=> $this->input->post('perhatian'),
-					'catatan'         		=> $this->input->post('catatan'),
-					// 'catatanra'        	=> $this->input->post('catatanra'),
-					'pdf'			  		=> $this->upload->data('file_name'),
-					'status_approve_rnd' 	=> '0',
-					'status_approve_ra' 	=> '0',
-					'createdate'      		=> date('Y-m-d H:i:s'),
-					'updatedate'      		=> date('Y-m-d H:i:s')
-				);
-				$this->M_notifikasi->add($data, 'tbl_merek');
+			if(!empty($file)){
+				$config['upload_path'] = './assets/doc/';
+				$config['allowed_types'] = 'pdf';
+				$config['max_size']      = '2048';			
+                
+				$this->load->library('upload', $config);
+				// $this->upload->initialize($config);
 
-				$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Berhasil ditambahkan<strong class="green"></strong></div>');
-				redirect(base_url('fnp/notifikasi/'));
-			} else {
-				var_dump($this->upload->display_errors('', ''));
-				var_dump($_FILES);
+                if ($this->upload->do_upload('filepdf')) {
+					$data = array(
+						'namamerek'       => $this->input->post('namamerek'),
+						'namaproduk'      => $this->input->post('namaproduk'),
+						'bentuksediaan'   => $this->input->post('bentuksediaan'),
+						'warnasediaan'    => $this->input->post('warnasediaan'),
+						// 'primer'          => $this->input->post('primer'),
+						// 'sekunder'        => $this->input->post('sekunder'),
+						// 'ukurankemasan'   => $this->input->post('ukurankemasan'),
+						'noformula'       => $this->input->post('noformula'),
+						'norevisi'        => $this->input->post('norevisi'),
+						'tglberlaku'      => $this->input->post('tglberlaku'),
+						'formulakhusus'   => $this->input->post('formulakhusus'),
+						'persamaanproduk' => $this->input->post('persamaanproduk'),
+						'kategori'        => $this->input->post('kategori'),
+						// 'subkategori'     => $this->input->post('subkategori'),
+						'klaimproduk'     => $this->input->post('klaimproduk'),
+						'carapakai'       => $this->input->post('carapakai'),
+						'perhatian'       => $this->input->post('perhatian'),
+						'catatan'         => $this->input->post('catatan'),
+						'catatanra'        => $this->input->post('catatanra'),
+						'pdf' => $this->upload->data('file_name'),
+						'updatedate'      => date('Y-m-d H:i:s')
+					);
+					$this->M_notifikasi->add($data, 'tbl_merek');
+					$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Berhasil Diperbaharui<strong class="green"></strong></div>');
+					redirect(base_url('fnp/notifikasi/'));
+                } else {
+					var_dump($this->upload->display_errors('', ''));
+					var_dump($_FILES);
+                }
+			}else{
+			$data = array(
+				'namamerek'       => $this->input->post('namamerek'),
+				'namaproduk'      => $this->input->post('namaproduk'),
+				'bentuksediaan'   => $this->input->post('bentuksediaan'),
+				'warnasediaan'    => $this->input->post('warnasediaan'),
+				// 'primer'          => $this->input->post('primer'),
+				// 'sekunder'        => $this->input->post('sekunder'),
+				// 'ukurankemasan'   => $this->input->post('ukurankemasan'),
+				'noformula'       => $this->input->post('noformula'),
+				'norevisi'        => $this->input->post('norevisi'),
+				'tglberlaku'      => $this->input->post('tglberlaku'),
+				'formulakhusus'   => $this->input->post('formulakhusus'),
+				'persamaanproduk' => $this->input->post('persamaanproduk'),
+				'kategori'        => $this->input->post('kategori'),
+				// 'subkategori'     => $this->input->post('subkategori'),
+				'klaimproduk'     => $this->input->post('klaimproduk'),
+				'carapakai'       => $this->input->post('carapakai'),
+				'perhatian'       => $this->input->post('perhatian'),
+				'catatan'         => $this->input->post('catatan'),
+				'catatanra'        => $this->input->post('catatanra'),
+				'updatedate'      => date('Y-m-d H:i:s')
+			);
+			$this->M_notifikasi->add($data, 'tbl_merek');
+			$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Berhasil Diperbaharui<strong class="green"></strong></div>');
+			redirect(base_url('fnp/notifikasi/'));
 			}
-		
 		}
 	}
 
@@ -177,8 +202,31 @@ class Notifikasi extends CI_Controller {
 				// $this->upload->initialize($config);
 
                 if ($this->upload->do_upload('filepdf')) {
-					$data = ['pdf' => $this->upload->data('file_name')];
+					$data = array(
+						'namamerek'       => $this->input->post('namamerek'),
+						'namaproduk'      => $this->input->post('namaproduk'),
+						'bentuksediaan'   => $this->input->post('bentuksediaan'),
+						'warnasediaan'    => $this->input->post('warnasediaan'),
+						// 'primer'          => $this->input->post('primer'),
+						// 'sekunder'        => $this->input->post('sekunder'),
+						// 'ukurankemasan'   => $this->input->post('ukurankemasan'),
+						'noformula'       => $this->input->post('noformula'),
+						'norevisi'        => $this->input->post('norevisi'),
+						'tglberlaku'      => $this->input->post('tglberlaku'),
+						'formulakhusus'   => $this->input->post('formulakhusus'),
+						'persamaanproduk' => $this->input->post('persamaanproduk'),
+						'kategori'        => $this->input->post('kategori'),
+						// 'subkategori'     => $this->input->post('subkategori'),
+						'klaimproduk'     => $this->input->post('klaimproduk'),
+						'carapakai'       => $this->input->post('carapakai'),
+						'perhatian'       => $this->input->post('perhatian'),
+						'catatan'         => $this->input->post('catatan'),
+						'catatanra'        => $this->input->post('catatanra'),
+						'updatedate'      => date('Y-m-d H:i:s')
+					);
 					$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
+					$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Berhasil Diperbaharui<strong class="green"></strong></div>');
+					redirect(base_url('fnp/notifikasi/'));
                 } else {
 					var_dump($this->upload->display_errors('', ''));
 					var_dump($_FILES);

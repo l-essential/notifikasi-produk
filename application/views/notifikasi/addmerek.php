@@ -201,7 +201,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-10 input-group">
-                        <input type="file" name="filepdf" id="filepdf" accept=".pdf" required>
+                        <input type="file" name="filepdf" id="filepdf" accept=".pdf">
                     </div>
                 </div>
         </fieldset>
