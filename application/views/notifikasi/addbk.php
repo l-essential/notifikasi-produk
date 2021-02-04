@@ -45,7 +45,7 @@
             <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editbk/'); ?><?= $merekbyid[0]['idmerek']; ?>/<?= $b['idbk']; ?>" title="Edit Data">
             <i class="ace-icon fa fa-pencil bigger-120"></i></a>
 
-            <a class="btn btn-minier btn-danger show-option" href="<?= base_url('fnp/notifikasi/hapusbk/'); ?><?= $merekbyid[0]['idmerek']; ?>/<?= $b['idbk']; ?>" title="Hapus Data" onclick="return confirm('Apakah kamu yakin akan menghapus data ini?');">
+            <a class="btn btn-minier btn-danger show-option" href="<?= base_url('fnp/notifikasi/hapusbk/'); ?><?= $merekbyid[0]['idmerek']; ?>/<?= $b['idbk']; ?>" title="Hapus Data" onclick="return confirm('Apakah kamu yakin akan menghapus data <?= $b['primer']; ?>?');">
             <i class="ace-icon fa fa-trash bigger-120"></i></a>
         </td>        
     </tr>  

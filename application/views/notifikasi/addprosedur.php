@@ -17,6 +17,11 @@
 <a href="#importprosedur" role="button" data-toggle="modal" button type="button" class="btn btn-success btn-primary no-radius">
 <i class="ace-icon fa fa-download bigger-230"></i> Import Data</button></a> 
 
+<?php if(!empty($prosedur)){?>
+<a href="<?= base_url('fnp/notifikasi/delallpro/'); ?><?= $merekbyid[0]['idmerek']; ?>" role="button" data-toggle="modal" button type="button" class="btn btn-danger btn-primary no-radius">
+<i class="ace-icon fa fa-trash bigger-230"></i> Hapus Semua Data</button></a> 
+<?php } ?>
+
 <div class="clearfix">
     <div class="pull-right tableTools-container"></div>
 </div>

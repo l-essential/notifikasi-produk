@@ -11,10 +11,16 @@
 
 <div class="posisi">
   <a href="#tambah" role="button" data-toggle="modal" button type="button" class="btn btn-success btn-primary no-radius">
-   <i class="ace-icon fa fa-plus bigger-230"></i> Tambah Data</button></a>
+   <i class="ace-icon fa fa-plus bigger-230"></i> Tambah Data</a>
 
   <a href="#import" role="button" data-toggle="modal" button type="button" class="btn btn-success btn-primary no-radius">
-  <i class="fa fa-download bigger-230" aria-hidden="true"></i> Import Data</button></a>
+  <i class="fa fa-download bigger-230" aria-hidden="true"></i> Import Data</a>
+
+  <?php if(!empty($komposisi)){?>
+  <a href="<?= base_url('fnp/notifikasi/delalldatakomp/'); ?><?= $merekbyid[0]['idmerek']; ?>" type="button" class="btn btn-danger btn-primary no-radius" >
+  <i class="fa fa-trash bigger-230" aria-hidden="true"></i> Hapus Semua Data</a>
+  <?php } ?>
+  
 </div>
     
 <div class="clearfix">

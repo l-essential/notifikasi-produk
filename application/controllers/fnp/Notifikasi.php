@@ -101,27 +101,31 @@ class Notifikasi extends CI_Controller {
 
                 if ($this->upload->do_upload('filepdf')) {
 					$data = array(
-						'namamerek'       => $this->input->post('namamerek'),
-						'namaproduk'      => $this->input->post('namaproduk'),
-						'bentuksediaan'   => $this->input->post('bentuksediaan'),
-						'warnasediaan'    => $this->input->post('warnasediaan'),
-						// 'primer'          => $this->input->post('primer'),
-						// 'sekunder'        => $this->input->post('sekunder'),
-						// 'ukurankemasan'   => $this->input->post('ukurankemasan'),
-						'noformula'       => $this->input->post('noformula'),
-						'norevisi'        => $this->input->post('norevisi'),
-						'tglberlaku'      => $this->input->post('tglberlaku'),
-						'formulakhusus'   => $this->input->post('formulakhusus'),
-						'persamaanproduk' => $this->input->post('persamaanproduk'),
-						'kategori'        => $this->input->post('kategori'),
-						// 'subkategori'     => $this->input->post('subkategori'),
-						'klaimproduk'     => $this->input->post('klaimproduk'),
-						'carapakai'       => $this->input->post('carapakai'),
-						'perhatian'       => $this->input->post('perhatian'),
-						'catatan'         => $this->input->post('catatan'),
-						'catatanra'        => $this->input->post('catatanra'),
-						'pdf' => $this->upload->data('file_name'),
-						'updatedate'      => date('Y-m-d H:i:s')
+						'namamerek'       		=> $this->input->post('namamerek'),
+						'namaproduk'      		=> $this->input->post('namaproduk'),
+						'bentuksediaan'   		=> $this->input->post('bentuksediaan'),
+						'warnasediaan'    		=> $this->input->post('warnasediaan'),
+						// 'primer'          	=> $this->input->post('primer'),
+						// 'sekunder'        	=> $this->input->post('sekunder'),
+						// 'ukurankemasan'   	=> $this->input->post('ukurankemasan'),
+						'noformula'       		=> $this->input->post('noformula'),
+						'norevisi'        		=> $this->input->post('norevisi'),
+						'tglberlaku'      		=> $this->input->post('tglberlaku'),
+						'formulakhusus'   		=> $this->input->post('formulakhusus'),
+						'persamaanproduk' 		=> $this->input->post('persamaanproduk'),
+						'kategori'        		=> $this->input->post('kategori'),
+						// 'subkategori'     	=> $this->input->post('subkategori'),
+						'klaimproduk'     		=> $this->input->post('klaimproduk'),
+						'carapakai'       		=> $this->input->post('carapakai'),
+						'perhatian'       		=> $this->input->post('perhatian'),
+						'catatan'         		=> $this->input->post('catatan'),
+						'catatanra'        		=> $this->input->post('catatanra'),
+						'pdf' 					=> $this->upload->data('file_name'),
+						'status_approve_rnd' 	=> '0',
+						'status_approve_ra' 	=> '0',
+						'createby'        		=> $this->session->userdata('username'),
+						'createdate'      		=> date('Y-m-d H:i:s'),
+						'updatedate'      		=> date('Y-m-d H:i:s')
 					);
 					$this->M_notifikasi->add($data, 'tbl_merek');
 					$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Berhasil Diperbaharui<strong class="green"></strong></div>');
@@ -151,6 +155,10 @@ class Notifikasi extends CI_Controller {
 				'perhatian'       => $this->input->post('perhatian'),
 				'catatan'         => $this->input->post('catatan'),
 				'catatanra'        => $this->input->post('catatanra'),
+				'status_approve_rnd' => '0',
+				'status_approve_ra' => '0',
+				'createby'        => $this->session->userdata('username'),
+				'createdate'      => date('Y-m-d H:i:s'),
 				'updatedate'      => date('Y-m-d H:i:s')
 			);
 			$this->M_notifikasi->add($data, 'tbl_merek');
@@ -161,6 +169,8 @@ class Notifikasi extends CI_Controller {
 	}
 
 	public function editmerek($idmerek){
+		$data['merek'] = $this->M_notifikasi->getmerekbyid($idmerek)->row_array();
+
 		$this->form_validation->set_rules('namamerek', 'Nama Merek', 'required');
 		$this->form_validation->set_rules('namaproduk', 'Nama Produk', 'required');
 		$this->form_validation->set_rules('bentuksediaan', 'Bentuk Sediaan', 'required');
@@ -202,6 +212,11 @@ class Notifikasi extends CI_Controller {
 				// $this->upload->initialize($config);
 
                 if ($this->upload->do_upload('filepdf')) {
+					$old = $data['merek']['pdf'];
+                    if ($old != $file) {
+                        unlink(FCPATH . 'assets/doc/' . $old);
+					}
+					
 					$data = array(
 						'namamerek'       => $this->input->post('namamerek'),
 						'namaproduk'      => $this->input->post('namaproduk'),
@@ -222,6 +237,7 @@ class Notifikasi extends CI_Controller {
 						'perhatian'       => $this->input->post('perhatian'),
 						'catatan'         => $this->input->post('catatan'),
 						'catatanra'        => $this->input->post('catatanra'),
+						'pdf' => $this->upload->data('file_name'),
 						'updatedate'      => date('Y-m-d H:i:s')
 					);
 					$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
@@ -259,6 +275,15 @@ class Notifikasi extends CI_Controller {
 			redirect(base_url('fnp/notifikasi/'));
 			}
 		}
+	}
+
+	public function delpdf($idmerek){
+		$data['merek'] = $this->M_notifikasi->getmerekbyid($idmerek)->row_array();
+		$old = $data['merek']['pdf'];
+		unlink(FCPATH . 'assets/doc/' . $old);
+		$this->M_notifikasi->delpdf($idmerek);
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>File PDF Berhasil Dihapus<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/editmerek/') . $idmerek);
 	}
 
 	// ========================================================================================== BENTUK KEMASAN
@@ -318,7 +343,7 @@ class Notifikasi extends CI_Controller {
 	
 			$this->M_notifikasi->editbk($idmerek, $idbk, $data,'tbl_bentukkemasan');
 			$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Bentuk Kemasan Berhasil Diperbaharui<strong class="green"></strong></div>');
-			redirect(base_url('fnp/notifikasi/editbk/') . $idmerek);
+			redirect(base_url('fnp/notifikasi/addbk/') . $idmerek);
 		}
 	}
 	
@@ -456,6 +481,12 @@ class Notifikasi extends CI_Controller {
 		redirect(base_url('fnp/notifikasi/addkomposisi/') . $idmerek);
 	}
 
+	public function delalldatakomp($idmerek){
+		$this->M_notifikasi->hapuskomposisiall($idmerek);
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Komposisi Berhasil Dihapus<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/addkomposisi/') . $idmerek);
+	}
+
 	// ========================================================================================== PROSEDUR
 	public function addprosedur($idmerek){
 		
@@ -568,17 +599,27 @@ class Notifikasi extends CI_Controller {
 		redirect(base_url('fnp/notifikasi/addprosedur/') . $idmerek);
 	}
 
+	public function delallpro($idmerek){
+		$this->M_notifikasi->delallpro($idmerek);
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Prosedur Berhasil Dihapus<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/addprosedur/') . $idmerek);
+	}
+
+
+	// ========================================================================================== PRINT
 	public function print($idmerek){
 		$data = [
 			'merek'      => $this->M_notifikasi->getmerekbyid($idmerek)->row_array(),
 			'komposisi'  => $this->M_notifikasi->getkomposisi($idmerek)->result_array(),
 			'prosedur'   => $this->M_notifikasi->getprosedur($idmerek)->result_array(),
 			'bk'         => $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array(),
-			'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-			'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+			'userLogin'  => $this->userlogin_model->listing()
 		];
         $html = $this->load->view('notifikasi/print', $data);
 	}
+
+
+	// ========================================================================================== APPROVAL
 
 	public function approve_ra($idmerek){
 
@@ -587,8 +628,8 @@ class Notifikasi extends CI_Controller {
 		'approve_ra_by'     => $this->session->userdata('username'),
 		'approve_ra_at'     => date('Y-m-d H:i:s'),
 	);
-
 	$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
+
 	$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Berhasil Disetujui<strong class="green"></strong></div>');
 	redirect(base_url('fnp/notifikasi/'));
 	}
@@ -600,11 +641,35 @@ class Notifikasi extends CI_Controller {
 			'approve_rnd_by'     => $this->session->userdata('username'),
 			'approve_rnd_at'     => date('Y-m-d H:i:s'),
 		);
-	
 		$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
+
 		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Berhasil Disetujui<strong class="green"></strong></div>');
 		redirect(base_url('fnp/notifikasi/'));
-		}
+	}
+
+	public function unapprove_rnd($idmerek){
+		$data = array(
+			'status_approve_rnd' => 0,
+			'approve_rnd_by'     => NULL,
+			'approve_rnd_at'     => NULL,
+		);
+		$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
+
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Batal Disetujui<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/'));
+	}
+
+	public function unapprove_ra($idmerek){
+		$data = array(
+			'status_approve_ra' => 0,
+			'approve_ra_by'     => NULL,
+			'approve_ra_at'     => NULL,
+		);
+		$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
+
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Batal Disetujui<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/'));
+	}
 
 
 }

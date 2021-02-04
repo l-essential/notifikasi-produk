@@ -26,9 +26,13 @@
             <label class="col-sm-4 control-label no-padding-right"></label>
             <div class="col-sm-8 input-group">
                 <label for="" style="margin-right: 10px"><b>Sekunder :</b></label>
-                <input type="radio" name="sekunder" value="Inner Box" style="margin-right: 5px"> <b style="margin-right: 20px">Inner Box</b> 
-
+                <?php if($edit[0]['sekunder'] == 'Inner Box'){?>
+                <input type="radio" name="sekunder" value="Inner Box" style="margin-right: 5px" <?= 'checked';?> > <b style="margin-right: 20px">Inner Box</b> 
                 <input type="radio" name="sekunder" value="Tidak" style="margin-right: 5px"><b>Tidak</b>
+                <?php }else{ ?>
+                <input type="radio" name="sekunder" value="Inner Box" style="margin-right: 5px"> <b style="margin-right: 20px">Inner Box</b> 
+                <input type="radio" name="sekunder" value="Tidak" style="margin-right: 5px"  <?= 'checked';?> ><b>Tidak</b>
+                <?php } ?>
             </div>
         </div>
         <div class="form-group">
@@ -42,9 +46,13 @@
             <label class="col-sm-4 control-label no-padding-right"></label>
             <div class="col-sm-8 input-group">
                 <label for="" style="margin-right: 10px"><b>Satuan :</b></label>
-                <input type="radio" name="satuan" id="satuan" value="Mililiter" style="margin-right: 5px"> <b style="margin-right: 20px">Mililiter</b> 
-
+                <?php if($edit[0]['satuan'] == 'Mililiter'){?>
+                <input type="radio" name="satuan" id="satuan" value="Mililiter" style="margin-right: 5px" <?= 'checked';?> > <b style="margin-right: 20px">Mililiter</b> 
                 <input type="radio" name="satuan" id="satuan" value="Gram" style="margin-right: 5px"><b>Gram</b>
+                <?php }else{ ?>
+                <input type="radio" name="satuan" id="satuan" value="Mililiter" style="margin-right: 5px"> <b style="margin-right: 20px">Mililiter</b> 
+                <input type="radio" name="satuan" id="satuan" value="Gram" style="margin-right: 5px" <?= 'checked';?>><b>Gram</b>
+                <?php }?>
             </div>
         </div>
         

@@ -64,8 +64,7 @@ class Role extends CI_Controller {
 						   'd'				 => $i->post('submodule_delete_'.$submodule->id_submodule),						   
 			      		   'create_by'    	 => $this->session->userdata('username'),
 							  'create_date'  	 => date('Y-m-d H:i:s'),
-							  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-							  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+							  );
 		 		$this->role_model->tambah($data);	
 		}
 		$this->session->set_flashdata('sukses','Data Berhasil Di Simpan');
@@ -90,8 +89,7 @@ class Role extends CI_Controller {
 						   'd'				 => $i->post('submodule_delete_'.$submodule->id_submodule),						   
 			      		   'change_by'    	 => $this->session->userdata('username'),
 							  'change_date'  	 => date('Y-m-d H:i:s'),
-							  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-							  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+							  );
 		 		$this->role_model->edit($data);	
 		}else{
 			$data =  array('id_group'      	 => $i->post('id_group'),
@@ -104,8 +102,7 @@ class Role extends CI_Controller {
 						   'd'				 => $i->post('submodule_delete_'.$submodule->id_submodule),						   
 			      		   'change_by'    	 => $this->session->userdata('username'),
 							  'change_date'  	 => date('Y-m-d H:i:s'),
-							  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-							  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+							  );
 		 		$this->role_model->tambah($data);
 		 	}
 		}

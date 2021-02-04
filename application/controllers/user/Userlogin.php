@@ -71,8 +71,7 @@ class Userlogin extends CI_Controller {
 						   'id_akses'      		 => $i->post('id_akses'),
 						   'create_by'     		 => $this->session->userdata('username'),
 						   'create_date'   		 => date('Y-m-d H:i:s'),
-						   'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-						   'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+						   );
 			$this->userlogin_model->tambah($data);	
 		$this->session->set_flashdata('sukses','Data Berhasil Di Tambah');
 		redirect(base_url('user/userlogin'));
@@ -95,8 +94,7 @@ class Userlogin extends CI_Controller {
 					  	  'karyawan'	 =>  $karyawan,
 					  	  'userlogin'	 =>	 $userlogin,					  
 							'isi'          => 'user/user_login/edit',
-							'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-							'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());						
+							);						
 			$this->load->view('layout/wrapper',$data);			
 		}else{
 			$i = $this->input;
@@ -107,8 +105,7 @@ class Userlogin extends CI_Controller {
 						   'id_akses'   	  => $i->post('id_akses'),
 						   'change_by'        => $this->session->userdata('username'),
 						   'change_date'	  => date('Y-m-d H:i:s'),
-						   'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-						   'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+						  );
 			$this->userlogin_model->edit($data,$id_login);			
 			$this->session->set_flashdata('sukses','Data Berhasil Di Update');
 			redirect(base_url('user/userlogin'));
@@ -118,8 +115,7 @@ class Userlogin extends CI_Controller {
 						   'id_akses'   	  => $i->post('id_akses'),
 						   'change_by'        => $this->session->userdata('username'),
 						   'change_date'	  => date('Y-m-d H:i:s'),
-						   'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-						   'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+						   );
 			$this->userlogin_model->edit($data,$id_login);			
 			$this->session->set_flashdata('sukses','Data Berhasil Di Update');
 			redirect(base_url('user/userlogin'));

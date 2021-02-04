@@ -50,8 +50,7 @@ class Module extends CI_Controller {
 						   'urutan'        => $i->post('urutan'),
 						   'create_by'	   => $this->session->userdata('username'),
 						   'create_date'   => date('Y-m-d H:i:s'),
-						   'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-						   'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+						   );
 			$this->module_model->tambah($data);	
 			$this->session->set_flashdata('sukses','Data Berhasil Di Tambah');
 			redirect(base_url('user/module'));
@@ -82,8 +81,7 @@ class Module extends CI_Controller {
 						   'urutan'        => $i->post('urutan'),
 						   'change_by'	   => $this->session->userdata('username'),
 						   'change_date'   => date('Y-m-d H:i:s'),
-						   'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-						   'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+						   );
 			$this->module_model->edit($data,$id_module);			
 			$this->session->set_flashdata('sukses','Data Berhasil Di Update');
 			redirect(base_url('user/module'));

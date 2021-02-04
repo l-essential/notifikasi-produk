@@ -3,7 +3,9 @@
     $file = 'FNP-' . $merek['namamerek'] . '.pdf';
     //$mpdf = new Mpdf('utf-8', 'A4', 10.5, 'Arial');
     $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => 'A4', 'default_font' => 'Arial']);
-    
+
+    // var_dump($this->session->userdata());die;
+
     ob_start();
 ?>
 
@@ -321,9 +323,21 @@
             <td><br><br><br><br><br><br><br><br><br></td>
         </tr>
         <tr>
-            <td style="text-align: center;"><b>Cosmetic Product Development SPV</b></td>
-            <td style="text-align: center;"><b>R&D Cosmetic Manager</b></td>
-            <td style="text-align: center;"><b>Regulatory Affairs</b></td>
+            <td style="text-align: center;">
+                <b style="text-transform:uppercase"><?= $merek['createby']; ?></b> <br>
+                <b><?= date('d F Y', strtotime($merek['createdate'])); ?></b> <br>
+                <b>Cosmetic Product Development SPV</b>
+            </td>
+            <td style="text-align: center;">
+                <b style="text-transform:uppercase"><?= $merek['approve_rnd_by']; ?></b><br>
+                <b><?= date('d F Y', strtotime($merek['approve_rnd_at'])); ?></b><br>
+                <b>RnD Cosmetic Manager</b>
+            </td>
+            <td style="text-align: center;">
+                <b style="text-transform:uppercase"><?= $merek['approve_ra_by']; ?></b><br>
+                <b><?= date('d F Y', strtotime($merek['approve_ra_at'])); ?></b><br>
+                <b>Regulatory Affairs</b>
+            </td>
         </tr>
     </table>
 </body>

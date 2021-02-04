@@ -83,11 +83,21 @@ class M_notifikasi extends CI_Model{
 		$this->db->delete('tbl_komposisi');
 	}
 
+	public function hapuskomposisiall($idmerek){
+		$this->db->where('idmerek', $idmerek);
+		$this->db->delete('tbl_komposisi');
+	}
+
 	public function updatekomposisi($idkomposisi, $data, $table){
 		$this->db->where('idkomposisi', $idkomposisi);
 		$this->db->update($table, $data);
 	}
 
+	public function delpdf($idmerek){
+		$data = ['pdf' => NULL];
+		$this->db->where('idmerek', $idmerek);        
+		$this->db->update('tbl_merek', $data);
+	}
 
 
 	// ============================================================================== PROSEDUR
@@ -111,17 +121,10 @@ class M_notifikasi extends CI_Model{
 		$this->db->update($table, $data);
 	}
 
-	// ============================================================================== GET ALL DATA
-	// public function getalldata($idmerek){
-	// 	$this->db->select('tbl_merek.*, tbl_komposisi.*, tbl_prosedur.prosedur');
-	// 	$this->db->from('tbl_merek');
-	// 	$this->db->join('tbl_komposisi', 'tbl_komposisi.idmerek = tbl_merek.idmerek');
-	// 	$this->db->join('tbl_prosedur', 'tbl_prosedur.idmerek = tbl_merek.idmerek');
-	// 	$this->db->where('tbl_merek.idmerek', $idmerek);
-	// 	$query = $this->db->get();
-	// 	return $query;
-	// 	}
-
+	public function delallpro($idmerek){
+		$this->db->where('idmerek', $idmerek);
+		$this->db->delete('tbl_prosedur');
+	}
 
 	// ============================================================================== DELETE ALL DATA
 	public function delalldata($idmerek){
@@ -130,7 +133,7 @@ class M_notifikasi extends CI_Model{
 		$this->db->delete('tbl_prosedur', ['idmerek' => $idmerek]);
 	}
 
-// ============================================================================== MASTER BENTUK SEDIAAN
+	// ============================================================================== MASTER BENTUK SEDIAAN
 	
 	function getbs($idbs){
 		$query = $this->db->get_where('tbl_masterbs', ['idbs' => $idbs]);

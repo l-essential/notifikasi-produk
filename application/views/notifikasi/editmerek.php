@@ -9,6 +9,8 @@
   </h1>
 </div><!-- /.page-header -->
 
+<?= $this->session->flashdata('message'); ?>
+
 <div id="page">
     <form method="POST" action="<?= base_url('fnp/notifikasi/editmerek/')?><?= $merek['idmerek']; ?>" data-parsley-validate="true" enctype="multipart/form-data">
         <fieldset>
@@ -204,7 +206,14 @@
                 </div><!-- /.page-header -->
 
                 <div class="form-group">
-                    <p>Data yang telah di upload : <?php if($merek['pdf'] == ''){echo "KOSONG";}else{ echo $merek['pdf'];} ?></p>
+                    <p>
+                    <b>File yang telah di upload : <?php if($merek['pdf'] == ''){echo "KOSONG";}else{ echo $merek['pdf'];} ?> </b>
+                    
+                    <?php if($merek['pdf'] != ''){?>
+                    <a href="<?= base_url('fnp/notifikasi/delpdf/'); ?><?= $merek['idmerek']; ?>" class="btn-sm btn-danger no-radius" style="margin-left: 5px;" onclick="return confirm('Apakah kamu yakin akan menghapus file <?= $merek['pdf']; ?>?');"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
+                    </p>
+                    <?php } ?>
+                    
                     <div class="col-sm-10 input-group">
                         <input type="file" name="filepdf" id="filepdf" accept=".pdf" <?php if($group == 3){echo 'readonly';} ?>>
                     </div>

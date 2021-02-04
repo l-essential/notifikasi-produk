@@ -46,8 +46,7 @@ class Group extends CI_Controller {
 						   'nama_group'   => $i->post('nama_group'),
 						   'create_by'    => $this->session->userdata('username'),
 						   'create_date'  => date('Y-m-d H:i:s'),
-						   'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-						   'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+						   );
 			$this->group_model->tambah($data);	
 
 			$this->session->set_flashdata('sukses','Data Berhasil Di Tambah');
@@ -74,8 +73,7 @@ class Group extends CI_Controller {
 						   'nama_group'   => $i->post('nama_group'),
 						   'change_date'  => date('Y-m-d H:i:s'),
 						   'change_by'    => $this->session->userdata('username'),
-						   'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-						   'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+						   );
 			$this->group_model->edit($data,$id_group);			
 			$this->session->set_flashdata('sukses','Data Berhasil Di Update');
 			redirect(base_url('user/group'));

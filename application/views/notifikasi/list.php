@@ -54,8 +54,17 @@
             <i class="fa fa-pencil" aria-hidden="true"></i> Approve
             </a>
         <?php }else if($m['status_approve_rnd'] == 1){ ?>
-            <span class="label label-success"><i class="fa fa-check"></i> Approved</span><br>
-            <p style="color: green; text-transform:uppercase"><b><?= $m['approve_rnd_by'];?></b></p>
+            <span class="label label-success"><i class="fa fa-check"></i> Approved </span><br>
+            <p style="color: green; text-transform:uppercase">
+            
+            <b><?= $m['approve_rnd_by'];?></b> 
+            
+            <?php if($group == 2){?>
+            <a href="<?= base_url('fnp/notifikasi/unapprove_rnd/');?><?= $m['idmerek']; ?>" onclick="return confirm('Apakah Yakin Batal Setujui Data <?= $m['namamerek'];?>')" title="Batal Setujui"><i class="fa fa-times-circle fa-lg" style="color: red" aria-hidden="true"></i>
+            </a>
+            <?php }?>
+            
+            </p>
         <?php }else{ ?>
             <span class="label label-warning"><i class="fa fa-warning"></i> Belum Approve</span>
         <?php } ?>
@@ -68,7 +77,15 @@
             </a>
         <?php }else if($m['status_approve_ra'] == 1){ ?>
             <span class="label label-success"><i class="fa fa-check"></i> Approved</span><br>
-            <p style="color: green; text-transform:uppercase"><b><?= $m['approve_ra_by'];?></b></p>
+            <p style="color: green; text-transform:uppercase">
+            <b><?= $m['approve_ra_by'];?></b>
+
+            <?php if($group == 3){?>
+            <a href="<?= base_url('fnp/notifikasi/unapprove_ra/');?><?= $m['idmerek']; ?>" onclick="return confirm('Apakah Yakin Batal Setujui Data <?= $m['namamerek'];?>')" title="Batal Setujui"><i class="fa fa-times-circle fa-lg" style="color: red" aria-hidden="true"></i>
+            </a>
+            <?php }?>
+            
+            </p>
         <?php }else{ ?>
             <span class="label label-warning"><i class="fa fa-warning"></i> Belum Approve</span>
         <?php } ?>
@@ -81,7 +98,7 @@
         <td align="center"><?= date('d F Y', strtotime($m['tglberlaku'])); ?></td>
         
         <td align="center">
-            <?php if($group == 4){?>
+            <?php if($group == 4 || $group == 2){?>
             <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editmerek/'); ?><?= $m['idmerek']; ?>" title="Edit Merek">
             <i class="ace-icon fa fa-pencil bigger-120"></i></a>
             
@@ -99,21 +116,25 @@
             
             <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
             <i class="ace-icon fa fa-eye bigger-120"></i></a>
+            
+            <?php if($m['status_approve_rnd'] == 1 && $m['status_approve_ra'] == 1) {?>
+            <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>" title="Print Data"  >
+            <i class="ace-icon fa fa-print bigger-120"></i></a>
+            <?php } ?>
+            
+
+            <?php }else if($group == 3){ ?>
+            <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editmerek/'); ?><?= $m['idmerek']; ?>" title="Edit Merek">
+            <i class="ace-icon fa fa-pencil bigger-120"></i></a>
+
+            <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
+            <i class="ace-icon fa fa-eye bigger-120"></i></a>
 
             <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>" title="Print Data">
             <i class="ace-icon fa fa-print bigger-120"></i></a>
-            <?php }else if($group == 3){?>
-                <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editmerek/'); ?><?= $m['idmerek']; ?>" title="Edit Merek">
-                <i class="ace-icon fa fa-pencil bigger-120"></i></a>
-
-                <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
-                <i class="ace-icon fa fa-eye bigger-120"></i></a>
-
-                <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>" title="Print Data">
-                <i class="ace-icon fa fa-print bigger-120"></i></a>
             <?php }else{ ?>
-                <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
-                <i class="ace-icon fa fa-eye bigger-120"></i></a>
+            <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
+            <i class="ace-icon fa fa-eye bigger-120"></i></a>
             <?php } ?>
 
         </td>     
