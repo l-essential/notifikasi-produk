@@ -123,7 +123,7 @@ class Notifikasi extends CI_Controller {
 						'pdf' 					=> $this->upload->data('file_name'),
 						'status_approve_rnd' 	=> '0',
 						'status_approve_ra' 	=> '0',
-						'createby'        		=> $this->session->userdata('username'),
+						'createby'        		=> $this->session->userdata('NIK'),
 						'createdate'      		=> date('Y-m-d H:i:s'),
 						'updatedate'      		=> date('Y-m-d H:i:s')
 					);
@@ -157,7 +157,7 @@ class Notifikasi extends CI_Controller {
 				'catatanra'        => $this->input->post('catatanra'),
 				'status_approve_rnd' => '0',
 				'status_approve_ra' => '0',
-				'createby'        => $this->session->userdata('username'),
+				'createby'        => $this->session->userdata('NIK'),
 				'createdate'      => date('Y-m-d H:i:s'),
 				'updatedate'      => date('Y-m-d H:i:s')
 			);
