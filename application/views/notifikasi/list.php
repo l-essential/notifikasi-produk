@@ -116,11 +116,10 @@
             <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
             <i class="ace-icon fa fa-eye bigger-120"></i></a>
             
-            <?php if($m['status_approve_rnd'] == 1 && $m['status_approve_ra'] == 1) {?>
-            <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>/<?= $this->session->userdata('NIK'); ?>/<?= $m['approve_rnd_by']; ?>/<?= $m['approve_ra_by']; ?>" title="Print Data"  >
+            <?php if($NIK != '2019113215'){?>
+            <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/cetak/'); ?><?= $m['idmerek']; ?>/<?= $m['createby']; ?>/<?= $m['approve_rnd_by']; ?>/<?= $m['approve_ra_by']; ?>" title="Print Data"  >
             <i class="ace-icon fa fa-print bigger-120"></i></a>
             <?php } ?>
-            
 
             <?php }else if($group == 3){ ?>
             <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/editmerek/'); ?><?= $m['idmerek']; ?>" title="Edit Merek">
@@ -129,10 +128,8 @@
             <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
             <i class="ace-icon fa fa-eye bigger-120"></i></a>
 
-            <?php if($m['status_approve_rnd'] == 1 && $m['status_approve_ra'] == 1) {?>
-            <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>/<?= $m['createby']; ?>/<?= $m['approve_rnd_by']; ?>/<?= $m['approve_ra_by']; ?>" title="Print Data">
+            <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/cetak/'); ?><?= $m['idmerek']; ?>/<?= $m['createby']; ?>/<?= $m['approve_rnd_by']; ?>/<?= $m['approve_ra_by']; ?>" title="Print Data">
             <i class="ace-icon fa fa-print bigger-120"></i></a>
-            <?php } ?>
             
             <?php }else{ ?>
             <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">

@@ -607,8 +607,10 @@ class Notifikasi extends CI_Controller {
 
 
 	// ========================================================================================== PRINT
-	public function print($idmerek, $NIK1, $NIK2, $NIK3){
+	public function cetak($idmerek, $NIK1, $NIK2='', $NIK3=''){
 		$this->load->model('user/userlogin_model');
+
+		if($NIK2 != '' && $NIK3 != ''){
 		$data = [
 			'merek'      => $this->M_notifikasi->getmerekbyid($idmerek)->row_array(),
 			'komposisi'  => $this->M_notifikasi->getkomposisi($idmerek)->result_array(),
@@ -618,6 +620,18 @@ class Notifikasi extends CI_Controller {
 			'approve2'     => $this->userlogin_model->karyawanbynik($NIK2),
 			'approve3'     => $this->userlogin_model->karyawanbynik($NIK3)
 		];
+		}else{
+		$data = [
+			'merek'      => $this->M_notifikasi->getmerekbyid($idmerek)->row_array(),
+			'komposisi'  => $this->M_notifikasi->getkomposisi($idmerek)->result_array(),
+			'prosedur'   => $this->M_notifikasi->getprosedur($idmerek)->result_array(),
+			'bk'         => $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array(),
+			'approve1'     => $this->userlogin_model->karyawanbynik($NIK1),
+			'approve2'     => (object) ['namaKaryawan' => ''],
+			'approve3'     => (object) ['namaKaryawan' => '']
+		];	
+		}
+
         $html = $this->load->view('notifikasi/print', $data);
 	}
 

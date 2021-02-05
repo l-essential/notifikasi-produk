@@ -258,7 +258,7 @@
         ?>
         <tr>          
             <td style="width:5%; text-align: center;"><?= KonDecRomawi($no++); ?></td>
-            <td style="text-align: left;" colspan="5"><?= $a['prosedur']; ?></td>
+            <td style="text-align: left;" colspan="5"><?= iconv("UTF-8", "ISO-8859-1//TRANSLIT", $a['prosedur']); ?></td>
         </tr>  
         <?php 
             } 
@@ -329,12 +329,12 @@
             </td>
             <td style="text-align: center;">
                 <b style="text-transform:uppercase"><?= $approve2->namaKaryawan; ?></b><br>
-                <b><?= date('d F Y', strtotime($merek['approve_rnd_at'])); ?></b><br>
+                <b><?php if($merek['approve_rnd_at'] != NULL){ echo date('d F Y', strtotime($merek['approve_rnd_at']));}else{echo '';} ?></b><br>
                 <b>RnD Cosmetic Manager</b>
             </td>
             <td style="text-align: center;">
                 <b style="text-transform:uppercase"><?= $approve3->namaKaryawan; ?></b><br>
-                <b><?= date('d F Y', strtotime($merek['approve_ra_at'])); ?></b><br>
+                <b><?php if($merek['approve_ra_at'] != NULL){ echo date('d F Y', strtotime($merek['approve_rnd_at']));}else{echo '';} ?></b><br>
                 <b>Regulatory Affairs</b>
             </td>
         </tr>
