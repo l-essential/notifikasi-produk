@@ -73,5 +73,11 @@ class Userlogin_model extends CI_Model {
         public function karyawan_detail($NIK){
         $query = $this->db2->get_where('tbl_detail_karyawan',array('NIK' => $NIK));
         return $query->row();
-    }
+        }
+        
+        public function karyawanbynik($NIK)
+        {
+            $query = $this->db2->get_where('MS_karyawan',array('NIK' => $NIK));
+            return $query->row();
+        }
     }       

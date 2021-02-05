@@ -4,11 +4,10 @@
     //$mpdf = new Mpdf('utf-8', 'A4', 10.5, 'Arial');
     $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => 'A4', 'default_font' => 'Arial']);
 
-    // var_dump($this->session->userdata());die;
+    // var_dump($approve1); die;
 
     ob_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -324,17 +323,17 @@
         </tr>
         <tr>
             <td style="text-align: center;">
-                <b style="text-transform:uppercase"><?= $merek['createby']; ?></b> <br>
+                <b style="text-transform:uppercase"><?= $approve1->namaKaryawan; ?></b> <br>
                 <b><?= date('d F Y', strtotime($merek['createdate'])); ?></b> <br>
                 <b>Cosmetic Product Development SPV</b>
             </td>
             <td style="text-align: center;">
-                <b style="text-transform:uppercase"><?= $merek['approve_rnd_by']; ?></b><br>
+                <b style="text-transform:uppercase"><?= $approve2->namaKaryawan; ?></b><br>
                 <b><?= date('d F Y', strtotime($merek['approve_rnd_at'])); ?></b><br>
                 <b>RnD Cosmetic Manager</b>
             </td>
             <td style="text-align: center;">
-                <b style="text-transform:uppercase"><?= $merek['approve_ra_by']; ?></b><br>
+                <b style="text-transform:uppercase"><?= $approve3->namaKaryawan; ?></b><br>
                 <b><?= date('d F Y', strtotime($merek['approve_ra_at'])); ?></b><br>
                 <b>Regulatory Affairs</b>
             </td>

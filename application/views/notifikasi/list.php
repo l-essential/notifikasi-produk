@@ -54,17 +54,16 @@
             <i class="fa fa-pencil" aria-hidden="true"></i> Approve
             </a>
         <?php }else if($m['status_approve_rnd'] == 1){ ?>
-            <span class="label label-success"><i class="fa fa-check"></i> Approved </span><br>
-            <p style="color: green; text-transform:uppercase">
-            
-            <b><?= $m['approve_rnd_by'];?></b> 
-            
+            <div class="btn-group">
+            <button type="button" class="btn btn-xs btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-check"></i> Approved 
+            </button>
             <?php if($group == 2){?>
-            <a href="<?= base_url('fnp/notifikasi/unapprove_rnd/');?><?= $m['idmerek']; ?>" onclick="return confirm('Apakah Yakin Batal Setujui Data <?= $m['namamerek'];?>')" title="Batal Setujui"><i class="fa fa-times-circle fa-lg" style="color: red" aria-hidden="true"></i>
-            </a>
+            <ul class="dropdown-menu">
+                <li><a href="<?= base_url('fnp/notifikasi/unapprove_rnd/');?><?= $m['idmerek']; ?>">Batal Setujui</a></li>
+            </ul>
             <?php }?>
-            
-            </p>
+            </div>
         <?php }else{ ?>
             <span class="label label-warning"><i class="fa fa-warning"></i> Belum Approve</span>
         <?php } ?>
@@ -76,16 +75,16 @@
             <i class="fa fa-pencil" aria-hidden="true"></i> Approve
             </a>
         <?php }else if($m['status_approve_ra'] == 1){ ?>
-            <span class="label label-success"><i class="fa fa-check"></i> Approved</span><br>
-            <p style="color: green; text-transform:uppercase">
-            <b><?= $m['approve_ra_by'];?></b>
-
+            <div class="btn-group">
+            <button type="button" class="btn btn-xs btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-check"></i> Approved 
+            </button>
             <?php if($group == 3){?>
-            <a href="<?= base_url('fnp/notifikasi/unapprove_ra/');?><?= $m['idmerek']; ?>" onclick="return confirm('Apakah Yakin Batal Setujui Data <?= $m['namamerek'];?>')" title="Batal Setujui"><i class="fa fa-times-circle fa-lg" style="color: red" aria-hidden="true"></i>
-            </a>
+            <ul class="dropdown-menu">
+                <li><a href="<?= base_url('fnp/notifikasi/unapprove_ra/');?><?= $m['idmerek']; ?>">Batal Setujui</a></li>
+            </ul>
             <?php }?>
-            
-            </p>
+            </div>
         <?php }else{ ?>
             <span class="label label-warning"><i class="fa fa-warning"></i> Belum Approve</span>
         <?php } ?>
@@ -118,7 +117,7 @@
             <i class="ace-icon fa fa-eye bigger-120"></i></a>
             
             <?php if($m['status_approve_rnd'] == 1 && $m['status_approve_ra'] == 1) {?>
-            <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>" title="Print Data"  >
+            <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>/<?= $this->session->userdata('NIK'); ?>/<?= $m['approve_rnd_by']; ?>/<?= $m['approve_ra_by']; ?>" title="Print Data"  >
             <i class="ace-icon fa fa-print bigger-120"></i></a>
             <?php } ?>
             
@@ -130,8 +129,11 @@
             <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
             <i class="ace-icon fa fa-eye bigger-120"></i></a>
 
-            <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>" title="Print Data">
+            <?php if($m['status_approve_rnd'] == 1 && $m['status_approve_ra'] == 1) {?>
+            <a class="btn btn-minier btn-success show-option" href="<?= base_url('fnp/notifikasi/print/'); ?><?= $m['idmerek']; ?>/<?= $m['createby']; ?>/<?= $m['approve_rnd_by']; ?>/<?= $m['approve_ra_by']; ?>" title="Print Data">
             <i class="ace-icon fa fa-print bigger-120"></i></a>
+            <?php } ?>
+            
             <?php }else{ ?>
             <a class="btn btn-minier btn-primary show-option" href="<?= base_url('fnp/notifikasi/viewdata/'); ?><?= $m['idmerek']; ?>" title="View Data">
             <i class="ace-icon fa fa-eye bigger-120"></i></a>

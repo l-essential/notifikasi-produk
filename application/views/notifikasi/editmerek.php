@@ -209,7 +209,7 @@
                     <p>
                     <b>File yang telah di upload : <?php if($merek['pdf'] == ''){echo "KOSONG";}else{ echo $merek['pdf'];} ?> </b>
                     
-                    <?php if($merek['pdf'] != ''){?>
+                    <?php if($merek['pdf'] != '' && $group != 3){?>
                     <a href="<?= base_url('fnp/notifikasi/delpdf/'); ?><?= $merek['idmerek']; ?>" class="btn-sm btn-danger no-radius" style="margin-left: 5px;" onclick="return confirm('Apakah kamu yakin akan menghapus file <?= $merek['pdf']; ?>?');"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
                     </p>
                     <?php } ?>

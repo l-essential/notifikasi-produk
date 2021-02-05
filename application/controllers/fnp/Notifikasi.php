@@ -84,7 +84,9 @@ class Notifikasi extends CI_Controller {
 					  'databs'     => $this->M_notifikasi->getdata('tbl_masterbs')->result_array(),
 					  'databk'       => $this->M_notifikasi->getdata('tbl_masterbk')->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'approve2'     => $this->userlogin_model->karyawanbynik($NIK2),
+					  'approve3'     => $this->userlogin_model->karyawanbynik($NIK3)
 					);
 		$this->load->view('layout/wrapper', $data);
 		}else{
@@ -607,13 +609,16 @@ class Notifikasi extends CI_Controller {
 
 
 	// ========================================================================================== PRINT
-	public function print($idmerek){
+	public function print($idmerek, $NIK1, $NIK2, $NIK3){
+		$this->load->model('user/userlogin_model');
 		$data = [
 			'merek'      => $this->M_notifikasi->getmerekbyid($idmerek)->row_array(),
 			'komposisi'  => $this->M_notifikasi->getkomposisi($idmerek)->result_array(),
 			'prosedur'   => $this->M_notifikasi->getprosedur($idmerek)->result_array(),
 			'bk'         => $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array(),
-			'userLogin'  => $this->userlogin_model->listing()
+			'approve1'     => $this->userlogin_model->karyawanbynik($NIK1),
+			'approve2'     => $this->userlogin_model->karyawanbynik($NIK2),
+			'approve3'     => $this->userlogin_model->karyawanbynik($NIK3)
 		];
         $html = $this->load->view('notifikasi/print', $data);
 	}
@@ -625,7 +630,7 @@ class Notifikasi extends CI_Controller {
 
 	$data = array(
 		'status_approve_ra' => 1,
-		'approve_ra_by'     => $this->session->userdata('username'),
+		'approve_ra_by'     => $this->session->userdata('NIK'),
 		'approve_ra_at'     => date('Y-m-d H:i:s'),
 	);
 	$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
@@ -638,7 +643,7 @@ class Notifikasi extends CI_Controller {
 
 		$data = array(
 			'status_approve_rnd' => 1,
-			'approve_rnd_by'     => $this->session->userdata('username'),
+			'approve_rnd_by'     => $this->session->userdata('NIK'),
 			'approve_rnd_at'     => date('Y-m-d H:i:s'),
 		);
 		$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');

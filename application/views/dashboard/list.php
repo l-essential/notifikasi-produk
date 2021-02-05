@@ -10,8 +10,7 @@ $NIK        = $this->session->userdata('NIK');
 <button type="button" class="close" data-dismiss="alert">
   <i class="ace-icon fa fa-times"></i>
 </button>
-<i class="ace-icon fa fa-check green"></i>
-Selamat Datang <?php echo $this->session->userdata('username'); ?> :)
+<p style="text-transform:uppercase">Selamat Datang <?= $this->session->userdata('username'); ?> <i class="ace-icon fa fa-smile-o  fa-lg green"></i></p>
 <strong class="green">
  
 </strong>
