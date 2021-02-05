@@ -84,9 +84,7 @@ class Notifikasi extends CI_Controller {
 					  'databs'     => $this->M_notifikasi->getdata('tbl_masterbs')->result_array(),
 					  'databk'       => $this->M_notifikasi->getdata('tbl_masterbk')->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
-					  'approve2'     => $this->userlogin_model->karyawanbynik($NIK2),
-					  'approve3'     => $this->userlogin_model->karyawanbynik($NIK3)
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
 					);
 		$this->load->view('layout/wrapper', $data);
 		}else{
