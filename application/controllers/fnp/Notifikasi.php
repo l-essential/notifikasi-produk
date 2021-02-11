@@ -124,7 +124,7 @@ class Notifikasi extends CI_Controller {
 						'carapakai'       		=> $this->input->post('carapakai'),
 						'perhatian'       		=> $this->input->post('perhatian'),
 						'catatan'         		=> $this->input->post('catatan'),
-						'catatanra'        		=> $this->input->post('catatanra'),
+						// 'catatanra'        		=> $this->input->post('catatanra'),
 						'note_status_ra'        => '0',
 						'note_status_rnd'       => '0',
 						'pdf' 					=> $this->upload->data('file_name'),
@@ -164,7 +164,7 @@ class Notifikasi extends CI_Controller {
 				'carapakai'       => $this->input->post('carapakai'),
 				'perhatian'       => $this->input->post('perhatian'),
 				'catatan'         => $this->input->post('catatan'),
-				'catatanra'        		=> $this->input->post('catatanra'),
+				// 'catatanra'        		=> $this->input->post('catatanra'),
 				'status_approve_rnd' 	=> '0',
 				'status_approve_ra' 	=> '0',
 				'bk'					=> '0',
@@ -251,8 +251,8 @@ class Notifikasi extends CI_Controller {
 						'carapakai'       => $this->input->post('carapakai'),
 						'perhatian'       => $this->input->post('perhatian'),
 						'catatan'         => $this->input->post('catatan'),
-						'catatanra'       => $this->input->post('catatanra'),
-						'catatan_rndcm'   => $this->input->post('catatan_rndcm'),
+						// 'catatanra'       => $this->input->post('catatanra'),
+						// 'catatan_rndcm'   => $this->input->post('catatan_rndcm'),
 						'pdf' => $this->upload->data('file_name'),
 						'updatedate'      => date('Y-m-d H:i:s')
 					);
@@ -282,8 +282,8 @@ class Notifikasi extends CI_Controller {
 				'klaimproduk'     => $this->input->post('klaimproduk'),
 				'carapakai'       => $this->input->post('carapakai'),
 				'perhatian'       => $this->input->post('perhatian'),
-				'catatan'         => $this->input->post('catatan'),
-				'catatanra'        => $this->input->post('catatanra'),
+				// 'catatan'         => $this->input->post('catatan'),
+				// 'catatanra'        => $this->input->post('catatanra'),
 				'catatan_rndcm'   => $this->input->post('catatan_rndcm'),
 				'updatedate'      => date('Y-m-d H:i:s')
 			);
@@ -757,20 +757,103 @@ class Notifikasi extends CI_Controller {
 
 	// ========================================================================================== DUPLICATE
 	public function duplicate($idmerek){
+		$this->form_validation->set_rules('namamerek', 'Nama Merek', 'required');
+		$this->form_validation->set_rules('namaproduk', 'Nama Produk', 'required');
+		$this->form_validation->set_rules('bentuksediaan', 'Bentuk Sediaan', 'required');
+		$this->form_validation->set_rules('warnasediaan', 'Warna Sediaan', 'required');
+		$this->form_validation->set_rules('noformula', 'No. Formula', 'required');
+		$this->form_validation->set_rules('norevisi', 'No. Revisi', 'required');
+		$this->form_validation->set_rules('tglberlaku', 'Tanggal Berlaku', 'required');
+		$this->form_validation->set_rules('formulakhusus', 'Formula Khusus', 'required');
+		$this->form_validation->set_rules('persamaanproduk', 'Persamaan Produk', 'required');
+		$this->form_validation->set_rules('klaimproduk', 'Klaim Produk', 'required');
+		$this->form_validation->set_rules('carapakai', 'Cara Pakai', 'required');
+		$this->form_validation->set_rules('perhatian', 'Perhatian', 'required');
+		
+		if($this->form_validation->run() == false)
+        {
 		$data = array('sub_judul'  => 'Notifikasi',
-					  'sub_judul1' => 'Dulikat Data',
+					  'sub_judul1' => 'Duplikat Data',
 					  'isi'  	   => 'notifikasi/copy',
 					  'merek'      => $this->M_notifikasi->getmerekbyid($idmerek)->row_array(),
-					  'komposisi'  => $this->M_notifikasi->getkomposisi($idmerek)->result_array(),
-					  'prosedur'   => $this->M_notifikasi->getprosedur($idmerek)->result_array(),
-					  'total'      => null,
-					  'bk'         => $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array(),
+					  'databs'     => $this->M_notifikasi->getdata('tbl_masterbs')->result_array(),
+					  'databk'       => $this->M_notifikasi->getdata('tbl_masterbk')->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
 					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
 					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
 					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
-		$this->load->view('layout/wrapper',$data);
+		$this->load->view('layout/wrapper', $data);
+		}else{
+			$data = array(
+				'namamerek'       => $this->input->post('namamerek'),
+				'namaproduk'      => $this->input->post('namaproduk'),
+				'bentuksediaan'   => $this->input->post('bentuksediaan'),
+				'warnasediaan'    => $this->input->post('warnasediaan'),
+				'noformula'       => $this->input->post('noformula'),
+				'norevisi'        => $this->input->post('norevisi'),
+				'tglberlaku'      => $this->input->post('tglberlaku'),
+				'formulakhusus'   => $this->input->post('formulakhusus'),
+				'persamaanproduk' => $this->input->post('persamaanproduk'),
+				'kategori'        => $this->input->post('kategori'),
+				'klaimproduk'     => $this->input->post('klaimproduk'),
+				'carapakai'       => $this->input->post('carapakai'),
+				'perhatian'       => $this->input->post('perhatian'),
+				'catatan'         => $this->input->post('catatan'),
+				'status_approve_rnd' 	=> '0',
+				'status_approve_ra' 	=> '0',
+				'bk'					=> '1',
+				'komposisi'				=> '1',
+				'prosedur'				=> '1',
+				'createby'        		=> $this->session->userdata('NIK'),
+				'createdate'      		=> date('Y-m-d H:i:s'),
+				'updatedate'      		=> date('Y-m-d H:i:s')
+			);
+			$this->M_notifikasi->add($data, 'tbl_merek');
+
+			$id = $this->db->insert_id();
+
+			$komposisi  = $this->M_notifikasi->getkomposisi($idmerek)->result_array();
+			foreach($komposisi as $k){
+				$data = [
+					'idmerek'       => $id,
+					'namadagang' 	=> $k['namadagang'],
+					'inciname' 		=> $k['inciname'],
+					'fungsi' 		=> $k['fungsi'],
+					'nocas'			=> $k['nocas'],
+					'konsentrasi'	=> $k['konsentrasi'],
+					'createdate'	=> date('Y-m-d H:i:s'),
+					'updatedate'	=> date('Y-m-d H:i:s')
+				];
+				$this->M_notifikasi->add($data, 'tbl_komposisi');
+			}
+
+			$prosedur   = $this->M_notifikasi->getprosedur($idmerek)->result_array();
+			foreach($prosedur as $p){
+				$data = [
+					'idmerek'     => $id,
+					'prosedur'    => $p['prosedur'],
+					'createdate'  => date('Y-m-d H:i:s'),
+					'updatedate'  => date('Y-m-d H:i:s')
+				];
+				$this->M_notifikasi->add($data, 'tbl_prosedur');
+			}
+
+			$bentukkemasan         = $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array();
+			foreach($bentukkemasan as $bk){
+				$data = array(
+					'idmerek'       => $id,
+					'primer'        => $bk['primer'],
+					'sekunder'      => $bk['sekunder'],
+					'ukurankemasan' => $bk['ukurankemasan'],
+					'satuan'        => $bk['satuan'],
+				);
+				$this->M_notifikasi->add($data,'tbl_bentukkemasan');
+			}
+
+			$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Berhasil Diduplikasi<strong class="green"></strong></div>');
+			redirect(base_url('fnp/notifikasi/'));
+		}
 	}
 
 	// ========================================================================================== CATATAN

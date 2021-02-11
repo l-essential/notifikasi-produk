@@ -397,23 +397,8 @@
 				<label class="col-sm-2 control-label no-padding-right">Catatan<span id="merah">*</span></label>
 				<div class="col-sm-10 input-group">
 					<input type="text" class="form-control" name='catatan' value="<?= $merek['catatan']; ?>" disabled>
-					
 				</div>
 			</div>
-			
- 			<div class="form-group">
-				<label class="col-sm-2 control-label no-padding-right">Catatan RA<span id="merah">*</span></label>
-				<div class="col-sm-10 input-group">
-					<textarea type="text" class="form-control" name='catatanra' disabled><?= $merek['catatanra']; ?></textarea>
-				</div>
-			</div>
-
-			<div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">Catatan RnD Cometic Manager<span id="merah">*</span></label>
-                    <div class="col-sm-10 input-group">
-                        <textarea type="text" class="form-control" name='catatan_rndcm' disabled><?= $merek['catatan_rndcm']; ?></textarea>
-                    </div>
-                </div>
 
 			<div class="page-header">
                 <h4>

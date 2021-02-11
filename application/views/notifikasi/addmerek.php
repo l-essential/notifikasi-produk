@@ -177,7 +177,7 @@
 
                     
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">Catatan RnD Cosmetic<span id="merah">*</span></label>
+                    <label class="col-sm-2 control-label no-padding-right">Catatan<span id="merah">*</span></label>
                     <div class="col-sm-10 input-group">
                         <textarea type="text" class="form-control" name='catatan' value=""></textarea>
                         <?= form_error('catatan', '<small class="text-danger pl-3">', '</small>')?>
@@ -210,68 +210,5 @@
 
     </form>
 </div>
-
-<script>
-    var bk = document.getElementById("bk");
-    var panel = document.getElementById("panelbk");
-    var delbk = document.getElementById("delbk");
-    
-
-    bk.onclick = function(){
-        bk.remove();
-        panel.innerHTML = `
-        <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <b style="margin-right: 60%">Bentuk Kemasan <?php $no=2; echo $no++; ?></b>
-                <a class="btn btn-minier btn-success show-option" id="bk" title="Tambah Bentuk Kemasan"><i class="ace-icon fa fa-plus bigger-120"></i></a>
-
-                 <a class="btn btn-minier btn-danger show-option" id="bk" title="Tambah Bentuk Kemasan"><i class="ace-icon fa fa-trash bigger-120"></i></a>                        
-            </h3>
-        </div>
-        <div class="panel-body">
-        <div class="form-group">
-                    <label class="col-sm-4 control-label no-padding-right">Bentuk Kemasan<span id="merah">*</span></label>
-                    <div class="col-sm-8 input-group">
-                        <select name="primer" class="chosen-select form-control">
-                            <option>Primer</option>
-                            <?php foreach ($databk as $bk) { ?>
-                            <option value="<?= $bk['bentukkemasan']; ?>"><?= $bk['bentukkemasan']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label no-padding-right"></label>
-                    <div class="col-sm-8 input-group">
-                        <label for="" style="margin-right: 10px"><b>Sekunder :</b></label>
-                        <input type="radio" name="satuan" value="Inner Box" style="margin-right: 5px"><b style="margin-right: 20px">Inner Box</b> 
-                        <input type="radio" name="satuan" value="Tidak" style="margin-right: 5px"><b>Tidak</b>
-
-                        <!-- <span class="input-group-addon"> Sekunder </span>
-                        <input type="text" class="form-control" name="sekunder" id="kg" value="" > -->
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label no-padding-right">Ukuran Kemasan<span id="merah">*</span></label>
-                    <div class="col-sm-8 input-group">
-                        <input type="number" class="form-control" name='ukurankemasan' value="">
-                        <?= form_error('ukurankemasan', '<small class="text-danger pl-3">', '</small>')?>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label no-padding-right"></label>
-                    <div class="col-sm-8 input-group">
-                        <label for="" style="margin-right: 10px"><b>Satuan :</b></label>
-                        <input type="radio" name="sekunder" value="Inner Box" style="margin-right: 5px"><b style="margin-right: 20px">Gram</b> 
-                        <input type="radio" name="sekunder" value="Tidak" style="margin-right: 5px"><b>Miligram</b>
-                    </div>
-                </div>
-        </div>
-        </div>
-        `
-    }
-</script>
-
     
     

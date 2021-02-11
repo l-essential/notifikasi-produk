@@ -184,26 +184,10 @@
 
                     
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">Catatan RnD<span id="merah">*</span></label>
+                    <label class="col-sm-2 control-label no-padding-right">Catatan<span id="merah">*</span></label>
                     <div class="col-sm-10 input-group">
                         <textarea type="text" class="form-control" name='catatan' <?php if($group == 3){echo 'readonly';} ?> ><?= $merek['catatan']; ?></textarea>
                         <?= form_error('catatan', '<small class="text-danger pl-3">', '</small>')?>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">Catatan RA<span id="merah">*</span></label>
-                    <div class="col-sm-10 input-group">
-                        <textarea type="text" class="form-control" name='catatanra' <?php if($group == 4 || $group == 2){echo 'readonly';} ?>><?= $merek['catatanra']; ?></textarea>
-                        <?= form_error('catatanra', '<small class="text-danger pl-3">', '</small>')?>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">Catatan RnD Cometic Manager<span id="merah">*</span></label>
-                    <div class="col-sm-10 input-group">
-                        <textarea type="text" class="form-control" name='catatan_rndcm' <?php if($group == 4 || $group == 3){echo 'readonly';} ?>><?= $merek['catatan_rndcm']; ?></textarea>
-                        <?= form_error('catatan_rndcm', '<small class="text-danger pl-3">', '</small>')?>
                     </div>
                 </div>
 

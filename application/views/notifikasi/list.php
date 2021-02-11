@@ -147,13 +147,13 @@
             <i class="ace-icon fa fa-pencil bigger-120"></i></a>
             
             <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/addbk/'); ?><?= $m['idmerek']; ?>" title="Tambah Bentuk Kemasan">
-            <i class="ace-icon fa fa-pencil bigger-120"></i></a>
+            <i class="ace-icon fa fa-plus-circle bigger-120"></i></a>
 
             <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/addkomposisi/'); ?><?= $m['idmerek']; ?>" title="Tambah Komposisi">
-            <i class="ace-icon fa fa-pencil bigger-120"></i></a>
+            <i class="ace-icon fa fa-plus-circle bigger-120"></i></a>
 
             <a class="btn btn-minier btn-warning show-option" href="<?= base_url('fnp/notifikasi/addprosedur/'); ?><?= $m['idmerek']; ?>" title="Tambah prosedur">
-            <i class="ace-icon fa fa-pencil bigger-120"></i></a>
+            <i class="ace-icon fa fa-plus-circle bigger-120"></i></a>
 
             <a class="btn btn-minier btn-info show-option" href="<?= base_url('fnp/notifikasi/duplicate/'); ?><?= $m['idmerek']; ?>" title="Duplikat Data">
             <i class="fa fa-files-o" aria-hidden="true"></i></a>
@@ -206,7 +206,7 @@
             </div> 
             <div class="form-group">
               <label for="message-text" class="control-label">Catatan</label>
-              <textarea class="form-control" name="catatan" id="message-text"></textarea>
+              <textarea class="form-control" name="catatan" required></textarea>
             </div>
             <div class="form-group">
               <input type="hidden" class="form-control" name="idmerek" id="idmerek">
