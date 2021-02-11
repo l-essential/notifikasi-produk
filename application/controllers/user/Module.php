@@ -38,7 +38,10 @@ class Module extends CI_Controller {
 					  'module'	   =>  $module,
 					  'isi'  	   => 'user/module/list',
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
+					);
 		
 		$this->load->view('layout/wrapper',$data);
 	}else{
@@ -70,7 +73,10 @@ class Module extends CI_Controller {
 					  	  'module'		 =>	 $module,					  
 							'isi'          => 'user/module/edit',
 							'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-							'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());						
+							'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+							'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+							'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
+						);						
 			$this->load->view('layout/wrapper',$data);			
 		}else{
 			$i = $this->input;

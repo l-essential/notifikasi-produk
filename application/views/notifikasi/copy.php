@@ -21,7 +21,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-copyright bigger-110"></i>
 							</span>
-							<input type="text" class="form-control" name='namamerek' value="<?= $merek['namamerek']; ?>" style="text-transform:uppercase" disabled>
+							<input type="text" class="form-control" name='namamerek' value="<?= $merek['namamerek']; ?>" style="text-transform:uppercase" >
 							
 						</div>
 					</div> 
@@ -32,7 +32,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-truck bigger-110"></i>
 							</span>
-							<input type="text"  class="form-control" name='namaproduk' value="<?= $merek['namaproduk']; ?>" disabled>
+							<input type="text"  class="form-control" name='namaproduk' value="<?= $merek['namaproduk']; ?>" >
 							
 						</div>
 					</div>
@@ -42,7 +42,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-glass bigger-110"></i>
 							</span>
-							<input type="text" class="form-control" name='bentuksediaan' value="<?= $merek['bentuksediaan']; ?>" disabled>
+							<input type="text" class="form-control" name='bentuksediaan' value="<?= $merek['bentuksediaan']; ?>" >
 							
 						</div>
 					</div>
@@ -52,7 +52,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-eyedropper bigger-110"></i>
 							</span>
-							<input type="text" class="form-control" name='warnasediaan' value="<?= $merek['warnasediaan']; ?>" disabled>
+							<input type="text" class="form-control" name='warnasediaan' value="<?= $merek['warnasediaan']; ?>" >
 							
 						</div>
 					</div>
@@ -60,13 +60,13 @@
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-padding-right">Kategori</label>
 						<div class="col-sm-8 input-group">
-							<input type="text"  class="form-control" name='kategori' value="<?= $merek['kategori']; ?>" disabled>
+							<input type="text"  class="form-control" name='kategori' value="<?= $merek['kategori']; ?>" readonly>
 						</div>
 					</div>
 					<!-- <div class="form-group">
 						<label class="col-sm-4 control-label no-padding-right">Sub Kategori</label>
 						<div class="col-sm-8 input-group">
-							<input type="text" class="form-control" name='subkategori' value="<?= $merek['subkategori']; ?>" disabled>
+							<input type="text" class="form-control" name='subkategori' value="<?= $merek['subkategori']; ?>" >
 						</div>
 					</div> -->
 				</div>
@@ -81,7 +81,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-qrcode bigger-110"></i>
 							</span>
-							<input type="text" class="form-control" name='noformula' value="<?= $merek['noformula']; ?>" disabled>
+							<input type="text" class="form-control" name='noformula' value="<?= $merek['noformula']; ?>" >
 							
 						</div>
 					</div>
@@ -91,7 +91,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-qrcode bigger-110"></i>
 							</span>
-							<input type="text" class="form-control" name='norevisi' value="<?= $merek['norevisi']; ?>" disabled>
+							<input type="text" class="form-control" name='norevisi' value="<?= $merek['norevisi']; ?>" >
 							
 						</div>
 					</div>
@@ -101,7 +101,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-calendar bigger-110"></i>
 							</span>
-							<input type="text" class="form-control date-picker" name='tglberlaku' value="<?= date('d F Y', strtotime($merek['tglberlaku'])); ?>" disabled>
+							<input type="text" class="form-control date-picker" name='tglberlaku' value="<?= date('d F Y', strtotime($merek['tglberlaku'])); ?>" >
 							
 						</div>
 					</div>
@@ -111,14 +111,14 @@
 							<span class="input-group-addon">
 								<i class="fa fa-flask bigger-110"></i>
 							</span>
-							<input type="text" class="form-control" name='formulakhusus' value="<?= $merek['formulakhusus']; ?>" disabled>
+							<input type="text" class="form-control" name='formulakhusus' value="<?= $merek['formulakhusus']; ?>" >
 							
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-padding-right">Persamaan Produk<span id="merah">*</span></label>
 						<div class="col-sm-8 input-group">
-							<input type="text" class="form-control" name='persamaanproduk' value="<?= $merek['persamaanproduk']; ?>" disabled>
+							<input type="text" class="form-control" name='persamaanproduk' value="<?= $merek['persamaanproduk']; ?>" >
 							
 						</div>
 					</div>
@@ -142,7 +142,7 @@
 							<span class="input-group-addon">
 								Primer
 							</span>
-							<input type="text" class="form-control" name="primer" id="kg" value="<?= $b['primer']; ?>" disabled>
+							<input type="text" class="form-control" name="primer" id="kg" value="<?= $b['primer']; ?>" >
 						</div>
 					</div>
 					<div class="form-group">
@@ -151,13 +151,13 @@
 							<span class="input-group-addon">
 								Sekunder
 							</span>
-							<input type="text" class="form-control" name="sekunder" id="kg" value="<?= $b['sekunder']; ?>" disabled>
+							<input type="text" class="form-control" name="sekunder" id="kg" value="<?= $b['sekunder']; ?>" >
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-padding-right">Ukuran Kemasan<span id="merah">*</span></label>
 						<div class="col-sm-8 input-group">
-							<input type="number" class="form-control" name='ukurankemasan' value="<?= $b['ukurankemasan']; ?>" disabled>
+							<input type="number" class="form-control" name='ukurankemasan' value="<?= $b['ukurankemasan']; ?>" >
 							
 							<span class="input-group-addon">
 								<?= $b['satuan']; ?>
@@ -348,7 +348,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label no-padding-right">klaim Produk<span id="merah">*</span></label>
 				<div class="col-sm-10 input-group">
-					<input type="text" class="form-control" name='klaimproduk' value="<?= $merek['klaimproduk']; ?>" disabled>
+					<input type="text" class="form-control" name='klaimproduk' value="<?= $merek['klaimproduk']; ?>" >
 					
 				</div>
 			</div>
@@ -364,7 +364,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label no-padding-right">Cara pakai<span id="merah">*</span></label>
 				<div class="col-sm-10 input-group">
-					<input type="text" class="form-control" name='carapakai' value="<?= $merek['carapakai']; ?>" disabled>
+					<input type="text" class="form-control" name='carapakai' value="<?= $merek['carapakai']; ?>" >
 					
 				</div>
 			</div>
@@ -380,7 +380,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label no-padding-right">Perhatian / Peringatan<span id="merah">*</span></label>
 				<div class="col-sm-10 input-group">
-					<input type="text" class="form-control" name='perhatian' value="<?= $merek['perhatian']; ?>" disabled>
+					<input type="text" class="form-control" name='perhatian' value="<?= $merek['perhatian']; ?>" >
 					
 				</div>
 			</div>
@@ -396,7 +396,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label no-padding-right">Catatan<span id="merah">*</span></label>
 				<div class="col-sm-10 input-group">
-					<input type="text" class="form-control" name='catatan' value="<?= $merek['catatan']; ?>" disabled>
+					<input type="text" class="form-control" name='catatan' value="<?= $merek['catatan']; ?>" readonly>
 					
 				</div>
 			</div>
@@ -404,14 +404,14 @@
  			<div class="form-group">
 				<label class="col-sm-2 control-label no-padding-right">Catatan RA<span id="merah">*</span></label>
 				<div class="col-sm-10 input-group">
-					<textarea type="text" class="form-control" name='catatanra' disabled><?= $merek['catatanra']; ?></textarea>
+					<textarea type="text" class="form-control" name='catatanra' readonly><?= $merek['catatanra']; ?></textarea>
 				</div>
 			</div>
 
 			<div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right">Catatan RnD Cometic Manager<span id="merah">*</span></label>
                     <div class="col-sm-10 input-group">
-                        <textarea type="text" class="form-control" name='catatan_rndcm' disabled><?= $merek['catatan_rndcm']; ?></textarea>
+                        <textarea type="text" class="form-control" name='catatan_rndcm' readonly><?= $merek['catatan_rndcm']; ?></textarea>
                     </div>
                 </div>
 

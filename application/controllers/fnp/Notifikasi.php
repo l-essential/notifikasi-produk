@@ -19,7 +19,9 @@ class Notifikasi extends CI_Controller {
 					  'isi'  	   => 'notifikasi/list',
 					  'merek'      => $this->M_notifikasi->getmerek()->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper',$data);
 	}
@@ -32,11 +34,12 @@ class Notifikasi extends CI_Controller {
 					  'merek'      => $this->M_notifikasi->getmerekbyid($idmerek)->row_array(),
 					  'komposisi'  => $this->M_notifikasi->getkomposisi($idmerek)->result_array(),
 					  'prosedur'   => $this->M_notifikasi->getprosedur($idmerek)->result_array(),
-					//   'alldata'    =>  $this->M_notifikasi->getalldata($idmerek)->result_array(),
 					  'total'      => null,
 					  'bk'         => $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper',$data);
 	}
@@ -84,7 +87,9 @@ class Notifikasi extends CI_Controller {
 					  'databs'     => $this->M_notifikasi->getdata('tbl_masterbs')->result_array(),
 					  'databk'       => $this->M_notifikasi->getdata('tbl_masterbk')->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper', $data);
 		}else{
@@ -120,9 +125,14 @@ class Notifikasi extends CI_Controller {
 						'perhatian'       		=> $this->input->post('perhatian'),
 						'catatan'         		=> $this->input->post('catatan'),
 						'catatanra'        		=> $this->input->post('catatanra'),
+						'note_status_ra'        => '0',
+						'note_status_rnd'       => '0',
 						'pdf' 					=> $this->upload->data('file_name'),
 						'status_approve_rnd' 	=> '0',
 						'status_approve_ra' 	=> '0',
+						'bk'					=> '0',
+						'komposisi'				=> '0',
+						'prosedur'				=> '0',
 						'createby'        		=> $this->session->userdata('NIK'),
 						'createdate'      		=> date('Y-m-d H:i:s'),
 						'updatedate'      		=> date('Y-m-d H:i:s')
@@ -154,12 +164,15 @@ class Notifikasi extends CI_Controller {
 				'carapakai'       => $this->input->post('carapakai'),
 				'perhatian'       => $this->input->post('perhatian'),
 				'catatan'         => $this->input->post('catatan'),
-				'catatanra'        => $this->input->post('catatanra'),
-				'status_approve_rnd' => '0',
-				'status_approve_ra' => '0',
-				'createby'        => $this->session->userdata('NIK'),
-				'createdate'      => date('Y-m-d H:i:s'),
-				'updatedate'      => date('Y-m-d H:i:s')
+				'catatanra'        		=> $this->input->post('catatanra'),
+				'status_approve_rnd' 	=> '0',
+				'status_approve_ra' 	=> '0',
+				'bk'					=> '0',
+				'komposisi'				=> '0',
+				'prosedur'				=> '0',
+				'createby'        		=> $this->session->userdata('NIK'),
+				'createdate'      		=> date('Y-m-d H:i:s'),
+				'updatedate'      		=> date('Y-m-d H:i:s')
 			);
 			$this->M_notifikasi->add($data, 'tbl_merek');
 			$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Berhasil Diperbaharui<strong class="green"></strong></div>');
@@ -196,7 +209,9 @@ class Notifikasi extends CI_Controller {
 					  'databs'     => $this->M_notifikasi->getdata('tbl_masterbs')->result_array(),
 					  'databk'       => $this->M_notifikasi->getdata('tbl_masterbk')->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper', $data);
 		}else{
@@ -236,7 +251,8 @@ class Notifikasi extends CI_Controller {
 						'carapakai'       => $this->input->post('carapakai'),
 						'perhatian'       => $this->input->post('perhatian'),
 						'catatan'         => $this->input->post('catatan'),
-						'catatanra'        => $this->input->post('catatanra'),
+						'catatanra'       => $this->input->post('catatanra'),
+						'catatan_rndcm'   => $this->input->post('catatan_rndcm'),
 						'pdf' => $this->upload->data('file_name'),
 						'updatedate'      => date('Y-m-d H:i:s')
 					);
@@ -268,6 +284,7 @@ class Notifikasi extends CI_Controller {
 				'perhatian'       => $this->input->post('perhatian'),
 				'catatan'         => $this->input->post('catatan'),
 				'catatanra'        => $this->input->post('catatanra'),
+				'catatan_rndcm'   => $this->input->post('catatan_rndcm'),
 				'updatedate'      => date('Y-m-d H:i:s')
 			);
 			$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
@@ -299,7 +316,9 @@ class Notifikasi extends CI_Controller {
 					  'bk'         => $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
 					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
-					  'databk'     => $this->M_notifikasi->getdata('tbl_masterbk')->result_array()
+					  'databk'     => $this->M_notifikasi->getdata('tbl_masterbk')->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper',$data);
 		}else{
@@ -310,8 +329,13 @@ class Notifikasi extends CI_Controller {
 				'ukurankemasan' => $this->input->post('ukurankemasan'),
 				'satuan'        => $this->input->post('satuan'),
 			);
-	
 			$this->M_notifikasi->add($data,'tbl_bentukkemasan');
+			
+			$data2 = [
+				'bk'		=> '1',
+			];
+			$this->M_notifikasi->updatemerek($idmerek, $data2, 'tbl_merek');
+
 			$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Bentuk Kemasan Berhasil Ditambahkan<strong class="green"></strong></div>');
 			redirect(base_url('fnp/notifikasi/addbk/') . $idmerek);
 		}
@@ -329,7 +353,9 @@ class Notifikasi extends CI_Controller {
 					  'edit'       => $this->M_notifikasi->getbkbyidbk($idmerek, $idbk)->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
 					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
-					  'databk'     => $this->M_notifikasi->getdata('tbl_masterbk')->result_array()
+					  'databk'     => $this->M_notifikasi->getdata('tbl_masterbk')->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper',$data);
 		}else{
@@ -369,7 +395,9 @@ class Notifikasi extends CI_Controller {
 					  'merekbyid'  => $this->M_notifikasi->getmerekbyid($idmerek)->result_array(),
 					  'komposisi'  => $this->M_notifikasi->getkomposisi($idmerek)->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper',$data);
 		}else{
@@ -383,8 +411,13 @@ class Notifikasi extends CI_Controller {
 				'createdate'      => date('Y-m-d H:i:s'),
 				'updatedate'      => date('Y-m-d H:i:s')
 			);
-	
 			$this->M_notifikasi->add($data,'tbl_komposisi');
+			
+			$data2 = [
+				'komposisi'	=> '1',
+			];
+			$this->M_notifikasi->updatemerek($idmerek, $data2, 'tbl_merek');
+
 			$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Komposisi Berhasil Ditambahkan<strong class="green"></strong></div>');
 			redirect(base_url('fnp/notifikasi/addkomposisi/') . $idmerek);
 		}
@@ -425,6 +458,11 @@ class Notifikasi extends CI_Controller {
 
 						// Simpan data ke database.
 						$this->M_notifikasi->add($data, 'tbl_komposisi');
+
+						$data2 = [
+							'komposisi'	=> '1',
+						];
+						$this->M_notifikasi->updatemerek($idmerek, $data2, 'tbl_merek');
 					}
 
 					fclose($handle);
@@ -453,7 +491,9 @@ class Notifikasi extends CI_Controller {
 					  'merekbyid'  => $this->M_notifikasi->getmerekbyid($idmerek)->result_array(),
 					  'getitem'    => $this->M_notifikasi->getitemkomposisi($idkomposisi)->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper',$data);
 		}else{
@@ -467,8 +507,8 @@ class Notifikasi extends CI_Controller {
 				// 'createdate'      => date('Y-m-d H:i:s'),
 				'updatedate'      => date('Y-m-d H:i:s')
 			);
-
 			$this->M_notifikasi->updatekomposisi($idkomposisi, $data, 'tbl_komposisi');
+
 			$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Komposisi Berhasil Diperbaharui<strong class="green"></strong></div>');
 			redirect(base_url('fnp/notifikasi/addkomposisi/') . $idmerek);
 		}
@@ -483,6 +523,12 @@ class Notifikasi extends CI_Controller {
 
 	public function delalldatakomp($idmerek){
 		$this->M_notifikasi->hapuskomposisiall($idmerek);
+
+		$data2 = [
+			'komposisi' => '0',
+		];
+		$this->M_notifikasi->updatemerek($idmerek, $data2, 'tbl_merek');
+
 		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Komposisi Berhasil Dihapus<strong class="green"></strong></div>');
 		redirect(base_url('fnp/notifikasi/addkomposisi/') . $idmerek);
 	}
@@ -500,7 +546,9 @@ class Notifikasi extends CI_Controller {
 					  'merekbyid'  => $this->M_notifikasi->getmerekbyid($idmerek)->result_array(),
 					  'prosedur'   => $this->M_notifikasi->getprosedur($idmerek)->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 		);
 		$this->load->view('layout/wrapper',$data);
 		}else{
@@ -511,6 +559,11 @@ class Notifikasi extends CI_Controller {
 			'updatedate'      => date('Y-m-d H:i:s')
 		);
 		$this->M_notifikasi->add($data,'tbl_prosedur');
+
+		$data2 = [
+			'prosedur'	=> '1',
+		];
+		$this->M_notifikasi->updatemerek($idmerek, $data2, 'tbl_merek');
 
 		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Prosedur Pembuatan Berhasil Ditambahkan<strong class="green"></strong></div>');
 
@@ -549,6 +602,11 @@ class Notifikasi extends CI_Controller {
 
 						// Simpan data ke database.
 						$this->M_notifikasi->add($data, 'tbl_prosedur');
+
+						$data2 = [
+							'prosedur'	=> '1'
+						];
+						$this->M_notifikasi->updatemerek($idmerek, $data2, 'tbl_merek');
 					}
 
 					fclose($handle);
@@ -574,7 +632,9 @@ class Notifikasi extends CI_Controller {
 					  'merekbyid'  => $this->M_notifikasi->getmerekbyid($idmerek)->result_array(),
 					  'getitem'    => $this->M_notifikasi->getitemprosedur($idprosedur)->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 		);
 		$this->load->view('layout/wrapper',$data);
 		}else{
@@ -594,6 +654,12 @@ class Notifikasi extends CI_Controller {
 
 	public function hapusprosedur($idprosedur, $idmerek){
 		$this->M_notifikasi->hapusprosedur($idprosedur);
+
+		$data2 = [
+			'prosedur'		=> '0',
+		];
+		$this->M_notifikasi->updatemerek($idmerek, $data2, 'tbl_merek');
+
 		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Prosedur Berhasil Dihapus<strong class="green"></strong></div>');
 		$this->M_notifikasi->getmerekbyid($idmerek)->result_array();
 		redirect(base_url('fnp/notifikasi/addprosedur/') . $idmerek);
@@ -685,6 +751,78 @@ class Notifikasi extends CI_Controller {
 		$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
 
 		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Data Merek Batal Disetujui<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/'));
+	}
+
+
+	// ========================================================================================== DUPLICATE
+	public function duplicate($idmerek){
+		$data = array('sub_judul'  => 'Notifikasi',
+					  'sub_judul1' => 'Dulikat Data',
+					  'isi'  	   => 'notifikasi/copy',
+					  'merek'      => $this->M_notifikasi->getmerekbyid($idmerek)->row_array(),
+					  'komposisi'  => $this->M_notifikasi->getkomposisi($idmerek)->result_array(),
+					  'prosedur'   => $this->M_notifikasi->getprosedur($idmerek)->result_array(),
+					  'total'      => null,
+					  'bk'         => $this->M_notifikasi->getbkbyidmerek($idmerek)->result_array(),
+					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
+					);
+		$this->load->view('layout/wrapper',$data);
+	}
+
+	// ========================================================================================== CATATAN
+	public function note_ra(){
+		$idmerek = $this->input->post('idmerek');
+		$data = array(
+			'catatanra'      => $this->input->post('catatan'),
+			'note_status_ra' => 1,
+		);
+		$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
+	
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Catatan telah ditambahkan<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/'));
+	}
+
+	public function note_rnd(){
+		$idmerek = $this->input->post('idmerek');
+		$catatan = $this->input->post('catatan');
+
+		$data = array(
+			'catatan_rndcm'  => $catatan,
+			'note_status_rndcm' => 1,
+		);
+		$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
+	
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Catatan telah ditambahkan<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/'));
+	}
+
+	public function fix_note_rndcm(){
+		$idmerek = $this->input->post('idmerek');
+
+		$data = array(
+			'catatan_rndcm'     => NULL,
+			'note_status_rndcm' => 0,
+		);
+		$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
+	
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Catatan telah dihapus<strong class="green"></strong></div>');
+		redirect(base_url('fnp/notifikasi/'));
+	}
+
+	public function fix_note_ra(){
+		$idmerek = $this->input->post('idmerek');
+
+		$data = array(
+			'catatanra'     => NULL,
+			'note_status_ra' => 0,
+		);
+		$this->M_notifikasi->updatemerek($idmerek, $data, 'tbl_merek');
+	
+		$this->session->set_flashdata('message','<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check green"></i>Catatan telah dihapus<strong class="green"></strong></div>');
 		redirect(base_url('fnp/notifikasi/'));
 	}
 

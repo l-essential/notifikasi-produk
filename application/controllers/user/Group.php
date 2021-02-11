@@ -36,7 +36,10 @@ class Group extends CI_Controller {
 					  'group'	   =>  $group,
 					  'isi'  	   => 'user/group/list',
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
+					);
 		
 		$this->load->view('layout/wrapper',$data);
 	}else{
@@ -65,7 +68,10 @@ class Group extends CI_Controller {
 					  	  'group'	 	 =>	 $group,					  
 							'isi'          => 'user/group/edit',
 							'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-							'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array());						
+							'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+							'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  		'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
+						);						
 			$this->load->view('layout/wrapper',$data);			
 		}else{
 			$i = $this->input;

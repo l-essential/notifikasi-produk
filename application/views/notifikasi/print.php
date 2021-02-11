@@ -289,16 +289,16 @@
         </tr>
         <tr>
             <td>
-                <b>6. Catatan RnD Cosmetic (RnDC)</b><br>
+                <b>6. Catatan</b><br>
                 <?= $merek['catatan']; ?>
             </td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td>
                 <b>6. Catatan Regulatory Affairs (RA)</b><br>
                 <?= $merek['catatanra']; ?>
             </td>
-        </tr>
+        </tr> -->
         <!-- <tr>
             <td>
                 <b>Keterangan : </b><br>

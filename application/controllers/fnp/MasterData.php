@@ -19,7 +19,9 @@ class MasterData extends CI_Controller {
 					  'isi'  	   => 'masterdata/bentuksediaan',
 					  'databs'       => $this->M_notifikasi->getdata('tbl_masterbs')->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper',$data);
 	}
@@ -33,7 +35,9 @@ class MasterData extends CI_Controller {
 						'sub_judul1'   => 'Tambah Data Bentuk Sediaan',
 						'isi'  	       => 'masterdata/tambahbs',
 						'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  	'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  	'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+						'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  	'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 						);
 			$this->load->view('layout/wrapper',$data);
 		}else{
@@ -58,7 +62,9 @@ class MasterData extends CI_Controller {
 						'isi'  	       => 'masterdata/editbs',
 						'databs'       => $this->M_notifikasi->getbs($idbs)->row_array(),
 						'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  	'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  	'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+						  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 						);
 			$this->load->view('layout/wrapper',$data);
 		}else{
@@ -88,7 +94,9 @@ class MasterData extends CI_Controller {
 					  'isi'  	   => 'masterdata/bentukkemasan',
 					  'databk'       => $this->M_notifikasi->getdata('tbl_masterbk')->result_array(),
 					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+					  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 					);
 		$this->load->view('layout/wrapper',$data);
 	}
@@ -102,7 +110,9 @@ class MasterData extends CI_Controller {
 						'sub_judul1'   => 'Tambah Data Bentuk Kemasan',
 						'isi'  	       => 'masterdata/tambahbk',
 						'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  	'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  	'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+						  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 						);
 			$this->load->view('layout/wrapper',$data);
 		}else{
@@ -127,7 +137,9 @@ class MasterData extends CI_Controller {
 						'isi'  	       => 'masterdata/editbk',
 						'databk'       => $this->M_notifikasi->getbk($idbk)->row_array(),
 						'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
-					  	'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					  	'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array(),
+						  'status_note_ra'  => $this->M_notifikasi->getmerekbystatusnotera()->result_array(),
+					  'status_note_rndcm'  => $this->M_notifikasi->getmerekbystatusnoternd()->result_array()
 						);
 			$this->load->view('layout/wrapper',$data);
 		}else{

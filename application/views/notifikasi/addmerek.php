@@ -183,14 +183,6 @@
                         <?= form_error('catatan', '<small class="text-danger pl-3">', '</small>')?>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">Catatan RA<span id="merah">*</span></label>
-                    <div class="col-sm-10 input-group">
-                        <textarea type="text" class="form-control" name='catatanra' <?php if($group != 3){echo 'readonly';} ?>></textarea>
-                        <?= form_error('catatanra', '<small class="text-danger pl-3">', '</small>')?>
-                    </div>
-                </div>
             </div> 
 
             <div class="page-header">

@@ -25,9 +25,94 @@ $foto           = $this->userlogin_model->karyawan_detail($NIK);
 // $jumlah_harian  = $this->status_karyawan_model->habis_harian();
 ?>
 
-<?php if($id_group != 4 && $id_group != 1){?>
+<!-- REMINDER KE SPV RND COSMETIC -->
+<?php if($id_group != 2 && $id_group != 3){?>
+<!-- CATATAN DARI RNDCM -->
+<div class="navbar-buttons navbar-header" role="navigation" style="margin-left: 55%;">
+<ul class="nav ace-nav">
+  <li>
+    <a data-toggle="dropdown" class="dropdown-toggle" href="#" style="background-color: #438eb9;">
+      <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+      <span class="badge badge-danger">
+      <?php echo count($status_note_rndcm)?>
+      </span>
+    </a>
 
-<div class="navbar-buttons navbar-header" role="navigation" style="margin-left: 60%; ">
+    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+      <li class="dropdown-header">
+        <i class="ace-icon fa fa-exclamation-triangle"></i>
+        <?php echo count($status_note_rndcm)?> Catatan RnDC Manager
+      </li>
+
+      <li class="dropdown-content">
+        <ul class="dropdown-menu dropdown-navbar navbar-red">
+          <?php foreach($status_note_rndcm as $m){?>
+          <li>
+            <a href="<?= base_url('fnp/notifikasi'); ?>" class="clearfix">
+              <h6 style="text-transform:uppercase"><b><?= $m['namamerek']; ?></b> <br> <span style="font-size: 10px"><?= $m['namaproduk']; ?></span></h6>
+            </a>
+          </li>
+          <?php } ?>
+        </ul>
+      </li>
+
+      <li class="dropdown-footer">
+        <a href="<?= base_url('fnp/notifikasi'); ?>">
+          Approve!
+          <i class="ace-icon fa fa-arrow-right"></i>
+        </a>
+      </li>
+    </ul>
+</ul>
+</div>
+<!-- END CATATAN DARI RNDCM -->
+
+<!-- CATATAN DARI RA -->
+<div class="navbar-buttons navbar-header" role="navigation" >
+<ul class="nav ace-nav">
+  <li>
+    <a data-toggle="dropdown" class="dropdown-toggle" href="#" style="background-color: #438eb9;">
+      <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+      <span class="badge badge-danger">
+      <?php echo count($status_note_ra)?>
+      </span>
+    </a>
+
+    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+      <li class="dropdown-header">
+        <i class="ace-icon fa fa-exclamation-triangle"></i>
+        <?php echo count($status_note_ra)?> Catatan RA
+      </li>
+
+      <li class="dropdown-content">
+        <ul class="dropdown-menu dropdown-navbar navbar-red">
+          <?php foreach($status_note_ra as $m){?>
+          <li>
+            <a href="<?= base_url('fnp/notifikasi'); ?>" class="clearfix">
+              <h6 style="text-transform:uppercase"><b><?= $m['namamerek']; ?></b> <br> <span style="font-size: 10px"><?= $m['namaproduk']; ?></span></h6>
+            </a>
+          </li>
+          <?php } ?>
+        </ul>
+      </li>
+
+      <li class="dropdown-footer">
+        <a href="<?= base_url('fnp/notifikasi'); ?>">
+          Approve!
+          <i class="ace-icon fa fa-arrow-right"></i>
+        </a>
+      </li>
+    </ul>
+</ul>
+</div>
+<!-- END CATATAN DARI RA -->
+<?php } ?>
+<!-- END REMINDER KE SPV RND COSMETIC -->
+
+
+<!-- REMINDER KE RNDCM & RA -->
+<?php if($id_group != 4 && $id_group != 1){?>
+<div class="navbar-buttons navbar-header" role="navigation" style="margin-left: 59%; ">
 <ul class="nav ace-nav">
   <li>
     <a data-toggle="dropdown" class="dropdown-toggle" href="#" style="background-color: #438eb9;">
@@ -76,6 +161,7 @@ $foto           = $this->userlogin_model->karyawan_detail($NIK);
 </ul>
 </div>
 <?php } ?>
+<!-- END REMINDER KE RNDCM & RA -->
 
 
 <div class="navbar-buttons navbar-header pull-right" role="navigation">
@@ -90,7 +176,7 @@ $foto           = $this->userlogin_model->karyawan_detail($NIK);
    if($foto->foto == ""){ ?>
    <?php echo '<img src="'.$baseurl.'/assets/upload/foto/thumbs/foto.jpg" class="nav-user-photo">'; ?>
    <?php }else{ ?>
-   <?php echo '<img src="'.$baseurl.'/assets/upload/foto/thumbs/'.$foto->foto.'" class="nav-user-photo">'; ?>
+   <?php echo '<img src="'.$baseurl.'/assets/upload/foto/thumbs/'.$foto->foto.'" class="nav-user-photo" style="width: 35px; height: 35px;">'; ?>
    <?php }; }; ?>
    <span class="user-info"><small>Selamat Datang</small><?php echo $this->session->userdata('username');?></span>
   <i class="ace-icon fa fa-caret-down"></i></a>

@@ -20,15 +20,41 @@ class M_notifikasi extends CI_Model{
 		return $query;
 	}
 
+	public function getmerekbystatusnoternd()
+    {
+		$this->db->select('namamerek, namaproduk');
+		$this->db->where('note_status_rndcm', 1);
+		$query = $this->db->get('tbl_merek'); 
+		return $query;
+	}
+
+	public function getmerekbystatusnotera()
+    {
+		$this->db->select('namamerek, namaproduk');
+		$this->db->where('note_status_ra', 1);
+		$query = $this->db->get('tbl_merek'); 
+		return $query;
+	}
+
 	public function getmerekbystatusra()
     {
-		$query = $this->db->get_where('tbl_merek', ['status_approve_ra' => 0]);
+		$this->db->select('namamerek, namaproduk');
+		$this->db->where('status_approve_ra', 0);
+		$this->db->where('bk', 1);
+		$this->db->where('komposisi', 1);
+		$this->db->where('prosedur', 1);
+		$query = $this->db->get('tbl_merek'); 
 		return $query;
 	}
 
 	public function getmerekbystatusrnd()
     {
-		$query = $this->db->get_where('tbl_merek', ['status_approve_rnd' => 0]);
+		$this->db->select('namamerek, namaproduk');
+		$this->db->where('status_approve_rnd', 0);
+		$this->db->where('bk', 1);
+		$this->db->where('komposisi', 1);
+		$this->db->where('prosedur', 1);
+		$query = $this->db->get('tbl_merek'); 
 		return $query;
 	}
 	

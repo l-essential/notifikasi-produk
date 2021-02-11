@@ -5,7 +5,7 @@
 
 <div class="page-header">
   <h1>
-    Edit Data Merek 
+    <?= $sub_judul1; ?> 
   </h1>
 </div><!-- /.page-header -->
 
@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label no-padding-right">Kategori</label>
                             <div class="col-sm-8 input-group">
-                                <input type="text"  class="form-control" name='kategori' value="<?= $merek['kategori']; ?>" <?php if($group == 4){echo 'readonly';} ?>>
+                                <input type="text"  class="form-control" name='kategori' value="<?= $merek['kategori']; ?>" <?php if($group == 4 || $group == 2){echo 'readonly';} ?>>
                             </div>
                         </div>
                         <!-- <div class="form-group">
@@ -194,8 +194,16 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right">Catatan RA<span id="merah">*</span></label>
                     <div class="col-sm-10 input-group">
-                        <textarea type="text" class="form-control" name='catatanra' <?php if($group == 4){echo 'readonly';} ?>><?= $merek['catatanra']; ?></textarea>
+                        <textarea type="text" class="form-control" name='catatanra' <?php if($group == 4 || $group == 2){echo 'readonly';} ?>><?= $merek['catatanra']; ?></textarea>
                         <?= form_error('catatanra', '<small class="text-danger pl-3">', '</small>')?>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">Catatan RnD Cometic Manager<span id="merah">*</span></label>
+                    <div class="col-sm-10 input-group">
+                        <textarea type="text" class="form-control" name='catatan_rndcm' <?php if($group == 4 || $group == 3){echo 'readonly';} ?>><?= $merek['catatan_rndcm']; ?></textarea>
+                        <?= form_error('catatan_rndcm', '<small class="text-danger pl-3">', '</small>')?>
                     </div>
                 </div>
 

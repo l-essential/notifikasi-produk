@@ -7,12 +7,16 @@ class Ubah_password extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user/userlogin_model');
+		$this->load->model('notifikasi/M_notifikasi');
 	}
 	public function index()
     {
     	$data = array('sub_judul'    => 'Ubah Password',
 					  'sub_judul1'   => 'Ubah Password',					  
-			          'isi'     	 => 'ubah_password');			
+					  'isi'     	 => 'ubah_password',
+					  'status_rnd' => $this->M_notifikasi->getmerekbystatusrnd()->result_array(),
+					  'status_ra'  => $this->M_notifikasi->getmerekbystatusra()->result_array()
+					);			
 		$this->load->view('layout/wrapper',$data);
 	}
 	public function change_password()

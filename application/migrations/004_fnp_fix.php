@@ -43,6 +43,18 @@ class Migration_Fnp extends CI_Migration
             'createby' => array(
                 'type' => 'INT',
                 'null' => TRUE
+            ),
+            'bk' => array(
+                'type' => 'INT',
+                'null' => TRUE
+            ),
+            'komposisi' => array(
+                'type' => 'INT',
+                'null' => TRUE
+            ),
+            'prosedur' => array(
+                'type' => 'INT',
+                'null' => TRUE
             )
         ]);
 
@@ -92,6 +104,9 @@ class Migration_Fnp extends CI_Migration
         $this->dbforge->drop_column('tbl_merek', 'approve_ra_by');
         $this->dbforge->drop_column('tbl_merek', 'approve_ra_at');
         $this->dbforge->drop_column('tbl_merek', 'createby');
+        $this->dbforge->drop_column('tbl_merek', 'bk');
+        $this->dbforge->drop_column('tbl_merek', 'komposisi');
+        $this->dbforge->drop_column('tbl_merek', 'prosedur');
         $this->dbforge->drop_table('tbl_bentukkemasan');
     }
 }
