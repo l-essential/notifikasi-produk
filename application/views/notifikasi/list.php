@@ -113,9 +113,9 @@
                 <?php if($m['note_status_rndcm'] == 1 && $m['note_status_ra'] == 1){?>
                 <button class="btn btn-minier btn-info show-option viewnote" data-id="<?= $m['idmerek']; ?>" data-note="<?= $m['catatan_rndcm']; ?>" title="Catatan RnDC Manager"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
 
-                <button class="btn btn-minier btn-info show-option viewnote2" data-id="<?= $m['idmerek']; ?>" data-note="<?= $m['catatanra']; ?>" title="Catatan RnDC Manager"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+                <button class="btn btn-minier btn-info show-option viewnote2" data-id="<?= $m['idmerek']; ?>" data-note="<?= $m['catatanra']; ?>" title="Catatan RA"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
                 <?php }else if($m['note_status_ra'] == 1){ ?>
-                <button class="btn btn-minier btn-info show-option viewnote2" data-id="<?= $m['idmerek']; ?>" data-note="<?= $m['catatanra']; ?>" title="Catatan RnDC Manager"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+                <button class="btn btn-minier btn-info show-option viewnote2" data-id="<?= $m['idmerek']; ?>" data-note="<?= $m['catatanra']; ?>" title="Catatan RA"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
                 <?php }else if($m['note_status_rndcm'] == 1) { ?>
                   <button class="btn btn-minier btn-info show-option viewnote" data-id="<?= $m['idmerek']; ?>" data-note="<?= $m['catatan_rndcm']; ?>" title="Catatan RnDC Manager"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
                 <?php }?>
